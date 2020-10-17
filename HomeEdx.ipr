@@ -356,6 +356,9 @@
       <method />
     </configuration>
   </component>
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+  </component>
   <component name="libraryTable">
     <library name="Maven: com.sun.mail:javax.mail:1.6.2">
       <CLASSES>
