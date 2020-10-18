@@ -91,7 +91,7 @@
         <version>2.2</version>
         <configuration>
           <port>8888</port>
-          <path>/coffee</path>
+          <path>/</path>
         </configuration>
       </plugin>
       <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->

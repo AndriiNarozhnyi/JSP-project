@@ -1,6 +1,7 @@
 package org.itstep.controller;
 
 import org.itstep.controller.Command.*;
+import org.itstep.model.service.UserService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -20,11 +21,11 @@ public class Servlet extends HttpServlet {
         servletConfig.getServletContext()
                 .setAttribute("loggedUsers", new HashSet<String>());
 
-        commands.put("logout",
+        commands.put("/logout",
                 new LogOutCommand());
-        commands.put("login",
-                new LoginCommand());
-        commands.put("exception" , new ExceptionCommand());
+        commands.put("/login",
+                new LoginCommand(new UserService()));
+        commands.put("/exception" , new ExceptionCommand());
     }
 
     public void doGet(HttpServletRequest request,
@@ -49,7 +50,7 @@ public class Servlet extends HttpServlet {
         String page = command.execute(request);
         //request.getRequestDispatcher(page).forward(request,response);
         if(page.contains("redirect:")){
-            response.sendRedirect(page.replace("redirect:", "/coffee"));
+            response.sendRedirect(page.replace("redirect:", ""));
         }else {
             request.getRequestDispatcher(page).forward(request, response);
         }

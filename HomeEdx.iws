@@ -3,8 +3,60 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="ALL" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a2ccef0-02f4-4c0f-bb84-0c342fe63f21" name="Default" comment="" />
+    <list default="true" id="9a2ccef0-02f4-4c0f-bb84-0c342fe63f21" name="Default" comment="Try 1 start from CoffeeMachine">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/filters/SessionLocaleFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/user/userbasis.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HomeEdx.iws" beforeDir="false" afterPath="$PROJECT_DIR$/HomeEdx.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LogOutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LogOutCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/desktop.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/filters/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/filters/AuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/service/InitCoffeeMachine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/adminbasis.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/adminbasis.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/admin/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/teacher/desktop.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/desktop.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user/desktop.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/user/userbasis.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/teacher/teacherbasis.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/CommandUtility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/CommandUtility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LogOutCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LogOutCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LoginCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LoginCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Servlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/filters/AuthFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/filters/AuthFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/Beverage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/BeverageReceipts.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/CoffeeMachine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/User$ROLE.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/enums/FirstBasicIngredient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/enums/Glassful.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/enums/SecondBasicIngredient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/enums/Sugar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/service/InitCoffeeMachine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/model/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/logs/access_log.2020-10-17" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/coffee/org/apache/jsp/WEB_002dINF/admin/adminbasis_jsp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/coffee/org/apache/jsp/WEB_002dINF/admin/adminbasis_jsp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/coffee/org/apache/jsp/index_jsp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/coffee/org/apache/jsp/index_jsp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/coffee/org/apache/jsp/login_jsp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/coffee/org/apache/jsp/login_jsp.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +70,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -36,7 +91,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Tutorial/Block01/Registration form samples/rf001/Test20170926" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -49,21 +104,24 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp" />
+      <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp" />
+      <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp\WEB-INF\user" />
+      <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp\WEB-INF\admin" />
+      <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp\WEB-INF" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.itstep.model.service" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.itstep.controller.Command" />
       <recent name="org.itstep.model.entity.enums" />
       <recent name="org.itstep.model.entity.enum" />
       <recent name="org.itstep.model.entity" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.itstep.model.service" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp" />
-      <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp\WEB-INF\user" />
-      <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp\WEB-INF\admin" />
-      <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp\WEB-INF" />
-      <recent name="D:\CoffeeMachine2\CoffeeMachine\src\main\webapp\WEB-INF" />
     </key>
   </component>
   <component name="RunManager">
@@ -75,6 +133,17 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -153,7 +222,19 @@
       <workItem from="1602944500392" duration="2073000" />
       <workItem from="1602950250520" duration="160000" />
       <workItem from="1602950458509" duration="1106000" />
+      <workItem from="1602951606152" duration="5843000" />
+      <workItem from="1602967159075" duration="20000" />
+      <workItem from="1602967444779" duration="106000" />
+      <workItem from="1602968114989" duration="19082000" />
     </task>
+    <task id="LOCAL-00001" summary="Try 1 start from CoffeeMachine">
+      <created>1602951654571</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602951654571</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -171,43 +252,205 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.jsp" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Try 1 start from CoffeeMachine" />
+    <option name="LAST_COMMIT_MESSAGE" value="Try 1 start from CoffeeMachine" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1602968921033">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1602968921033" />
     <state x="466" y="258" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1602951135100">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="466" y="258" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1602951135100" />
-    <state x="488" y="148" key="FileChooserDialogImpl" timestamp="1602916167112">
+    <state x="488" y="148" key="FileChooserDialogImpl" timestamp="1603034074568">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="148" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1602916167112" />
+    <state x="488" y="148" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1603034074568" />
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601657008039" />
-    <state width="1323" height="180" key="GridCell.Tab.0.bottom" timestamp="1602951581309">
+    <state width="1323" height="180" key="GridCell.Tab.0.bottom" timestamp="1603032444461">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602951581309" />
+    <state width="1323" height="180" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603032444461" />
     <state width="1493" height="212" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601657009563" />
-    <state width="1323" height="180" key="GridCell.Tab.0.center" timestamp="1602951581309">
+    <state width="1323" height="180" key="GridCell.Tab.0.center" timestamp="1603032444460">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1602951581309" />
+    <state width="1323" height="180" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603032444460" />
     <state width="1493" height="212" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601657009563" />
-    <state width="1323" height="180" key="GridCell.Tab.0.left" timestamp="1602951581309">
+    <state width="1323" height="180" key="GridCell.Tab.0.left" timestamp="1603032444460">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1602951581309" />
+    <state width="1323" height="180" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603032444460" />
     <state width="1493" height="212" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601657009562" />
-    <state width="1323" height="180" key="GridCell.Tab.0.right" timestamp="1602951581309">
+    <state width="1323" height="180" key="GridCell.Tab.0.right" timestamp="1603032444461">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1602951581309" />
+    <state width="1323" height="180" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603032444461" />
     <state width="1493" height="212" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601657009563" />
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1603020804289">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603020804289" />
+    <state width="1323" height="223" key="GridCell.Tab.1.center" timestamp="1603020804288">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1603020804288" />
+    <state width="1323" height="223" key="GridCell.Tab.1.left" timestamp="1603020804288">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1603020804288" />
+    <state width="1323" height="223" key="GridCell.Tab.1.right" timestamp="1603020804289">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1603020804289" />
     <state x="184" y="0" key="SettingsEditor" timestamp="1602950715799">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1602950715799" />
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1602961917564">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1602961917564" />
     <state x="383" y="121" key="refactoring.ChangeSignatureDialog" timestamp="1602951379133">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="383" y="121" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1602951379133" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LoginCommand.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LoginCommand.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LoginCommand.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="MavenRunConfiguration">
+        <watch expression="((PropertyChangeSupport)this.support).map" custom="javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,java.beans.PropertyChangeSupport" />
+        <watch expression="((PropertyChangeSupport)this.support).map" custom="javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,java.beans.PropertyChangeSupport" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

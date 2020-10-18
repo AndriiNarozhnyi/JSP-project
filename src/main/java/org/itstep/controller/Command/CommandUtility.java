@@ -9,21 +9,20 @@ import java.util.HashSet;
 
 class CommandUtility {
     static void setUserRole(HttpServletRequest request,
-                            Role role, String name) {
+                            Role role, Long userId) {
         HttpSession session = request.getSession();
-        ServletContext context = request.getSession().getServletContext();
-        context.setAttribute("userName", name);
         session.setAttribute("role", role);
+        session.setAttribute("userId", userId);
     }
 
-    static boolean checkUserIsLogged(HttpServletRequest request, String userName){
-        HashSet<String> loggedUsers = (HashSet<String>) request.getSession().getServletContext()
+    static boolean checkUserIsLogged(HttpServletRequest request, Long userId){
+        HashSet<Long> loggedUsers = (HashSet<Long>) request.getSession().getServletContext()
                 .getAttribute("loggedUsers");
 
-        if(loggedUsers.stream().anyMatch(userName::equals)){
+        if(loggedUsers.stream().anyMatch(userId::equals)){
             return true;
         }
-        loggedUsers.add(userName);
+        loggedUsers.add(userId);
         request.getSession().getServletContext()
                 .setAttribute("loggedUsers", loggedUsers);
         return false;

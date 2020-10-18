@@ -4,10 +4,11 @@ import org.itstep.model.entity.Role;
 import org.itstep.model.entity.User;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 public class UserService {
-    public Map<String, User> users;
+    public static Map<String, User> users = new HashMap<>();
 
     public UserService() {
         users.put("Andy", User.builder()

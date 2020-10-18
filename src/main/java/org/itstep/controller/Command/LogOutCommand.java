@@ -1,15 +1,23 @@
 package org.itstep.controller.Command;
 
-import org.itstep.model.entity.User;
-
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
 
 public class LogOutCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        // ToDo delete current user (context & session)
-        CommandUtility.setUserRole(request, User.ROLE.UNKNOWN, "Guest");
+        HttpSession session = request.getSession();
+
+        ServletContext context = session.getServletContext();HashSet<Long> loggedUsers = (HashSet<Long>) request.getSession().getServletContext()
+                .getAttribute("loggedUsers");
+        loggedUsers.remove(session.getAttribute("userId"));
+
+        session.removeAttribute("userId");
+        session.removeAttribute("role");
+        context.setAttribute("loggedUsers", loggedUsers);
+
         return "redirect:/index.jsp";
     }
 }
