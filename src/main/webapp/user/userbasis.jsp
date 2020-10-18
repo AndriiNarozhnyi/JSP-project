@@ -9,5 +9,10 @@
 
 <h1>Hello USER!</h1>
 <a href="${pageContext.request.contextPath}/logout">Logout</a>
+
+<% String message = (String)request.getAttribute("message1");
+out.print(message);
+%>
+
 </body>
 </html>

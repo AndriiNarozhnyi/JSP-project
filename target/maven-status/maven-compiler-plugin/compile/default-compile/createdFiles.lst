@@ -4,6 +4,7 @@ org\itstep\model\entity\Course.class
 org\itstep\controller\listener\SessionListener.class
 org\itstep\controller\filters\EncodingFilter.class
 org\itstep\model\service\UserService.class
+org\itstep\controller\filters\SessionLocaleFilter.class
 org\itstep\controller\Servlet.class
 org\itstep\controller\Command\LogOutCommand.class
 org\itstep\model\entity\User.class
