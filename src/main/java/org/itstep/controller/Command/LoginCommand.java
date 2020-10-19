@@ -5,7 +5,9 @@ import org.itstep.model.entity.User;
 import org.itstep.model.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class LoginCommand implements Command{
     public UserService userService;
@@ -15,7 +17,7 @@ public class LoginCommand implements Command{
     }
 
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String pass = request.getParameter("pass");
 
@@ -40,7 +42,9 @@ public class LoginCommand implements Command{
             return "redirect:/admin/adminbasis.jsp";
         } else if(user.get().getRoles().contains(Role.USER)) {
             CommandUtility.setUserRole(request, Role.USER, user.get().getId());
-            return "redirect:/user/userbasis.jsp";
+            ResourceBundle bundle = CommandUtility.setBundle(request);
+            request.setAttribute("message1", bundle.getString("incEndDate"));
+            return "/user/userbasis.jsp";
         } else if(user.get().getRoles().contains(Role.TEACHER)) {
             CommandUtility.setUserRole(request, Role.TEACHER, user.get().getId());
             return "redirect:/teacher/teacherbasis.jsp";

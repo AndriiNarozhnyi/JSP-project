@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class Servlet extends HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
+
+
 
     public void init(ServletConfig servletConfig){
 
@@ -26,6 +26,7 @@ public class Servlet extends HttpServlet {
         commands.put("/login",
                 new LoginCommand(new UserService()));
         commands.put("/exception" , new ExceptionCommand());
+        commands.put("/registration", new RegistrationCommand());
     }
 
     public void doGet(HttpServletRequest request,
@@ -45,9 +46,9 @@ public class Servlet extends HttpServlet {
         String path = request.getRequestURI();
         path = path.replaceAll(".*/coffee/" , "");
         Command command = commands.getOrDefault(path ,
-                (r)->"/index.jsp");
+                (r,s)->"/index.jsp");
         System.out.println(command.getClass().getName());
-        String page = command.execute(request);
+        String page = command.execute(request, response);
         //request.getRequestDispatcher(page).forward(request,response);
         if(page.contains("redirect:")){
             response.sendRedirect(page.replace("redirect:", ""));

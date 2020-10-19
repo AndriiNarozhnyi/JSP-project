@@ -10,6 +10,7 @@ org\itstep\controller\Command\LogOutCommand.class
 org\itstep\model\entity\User.class
 org\itstep\model\entity\Course$CourseBuilder.class
 org\itstep\model\entity\Role.class
+org\itstep\controller\Command\RegistrationCommand.class
 org\itstep\controller\Command\Command.class
 org\itstep\controller\Command\CommandUtility.class
 org\itstep\controller\Command\ExceptionCommand.class

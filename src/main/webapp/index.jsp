@@ -24,13 +24,12 @@ String getFormattedDate(){
     <title><fmt:message key="hello" /></title>
 </head>
     <body>
+    <%@ include file="/templates/header1.jsp"%>
         <h2>
             Hello CoffeeMachine! <br/>
             <i>Сегодня <%= getFormattedDate() %></i>
         </h2>
 
-        <a class="btn btn-primary mx-2" href="?sessionLocale=en"><fmt:message key="switch-en" /></a>
-        <a class="btn btn-primary mx-2" href="?sessionLocale=uk"><fmt:message key="switch-uk" /></a>
 
         <br/>
         <a href="${pageContext.request.contextPath}/login.jsp">Please log in</a>
