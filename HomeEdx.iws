@@ -13,44 +13,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a2ccef0-02f4-4c0f-bb84-0c342fe63f21" name="Default" comment="Try 3 filters + i18n in progress">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/RegistrationCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/registration.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/templates/header1.jsp" afterDir="false" />
+    <list default="true" id="9a2ccef0-02f4-4c0f-bb84-0c342fe63f21" name="Default" comment="Try 4 registration - pre db connection">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/CourseDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/DaoFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/GenericDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/ConnectionPoolHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/JDBCCourseDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/JDBCDaoFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/JDBCUserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/mapper/CourseMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/mapper/ObjectMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/mapper/UserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HomeEdx.iws" beforeDir="false" afterPath="$PROJECT_DIR$/HomeEdx.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/ExceptionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/ExceptionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LogOutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LogOutCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/filters/SessionLocaleFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/filters/SessionLocaleFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/listener/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/service/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/res.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/res.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/res_uk.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/res_uk.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/adminbasis.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/adminbasis.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/user/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/Command.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/Command.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/CommandUtility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/CommandUtility.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/ExceptionCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/ExceptionCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LogOutCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LogOutCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LoginCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LoginCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Servlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/listener/SessionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/listener/SessionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/RegistrationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/RegistrationCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,9 +37,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Jsp File" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -87,7 +63,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/org/itstep/model/dao" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -100,25 +76,28 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.itstep.controller.Command" />
+      <recent name="org.itstep.model.entity.enums" />
+      <recent name="org.itstep.model.entity.enum" />
+      <recent name="org.itstep.model.entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao" />
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\impl" />
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\resources" />
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.itstep.model.dao" />
+      <recent name="org.itstep.model.service" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\resources" />
       <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp" />
       <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp" />
       <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp\WEB-INF\user" />
       <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp\WEB-INF\admin" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\resources" />
-      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.itstep.model.service" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="org.itstep.controller.Command" />
-      <recent name="org.itstep.model.entity.enums" />
-      <recent name="org.itstep.model.entity.enum" />
-      <recent name="org.itstep.model.entity" />
     </key>
   </component>
   <component name="RunManager">
@@ -130,6 +109,19 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -212,6 +204,7 @@
       <workItem from="1602967159075" duration="20000" />
       <workItem from="1602967444779" duration="106000" />
       <workItem from="1602968114989" duration="39859000" />
+      <workItem from="1603125022836" duration="6345000" />
     </task>
     <task id="LOCAL-00001" summary="Try 1 start from CoffeeMachine">
       <created>1602951654571</created>
@@ -234,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603044906539</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Try 4 registration - pre db connection">
+      <created>1603125215923</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1603125215923</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -268,7 +268,8 @@
     <MESSAGE value="Try 1 start from CoffeeMachine" />
     <MESSAGE value="Try 2 filters + i18n in progress" />
     <MESSAGE value="Try 3 filters + i18n in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="Try 3 filters + i18n in progress" />
+    <MESSAGE value="Try 4 registration - pre db connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Try 4 registration - pre db connection" />
   </component>
   <component name="WindowStateProjectService">
     <state x="364" y="227" key="#com.intellij.codeInsight.i18n.I18nizeQuickFixDialog" timestamp="1603053560099">
@@ -328,14 +329,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1603045603005" />
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1603044910103">
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1603125234027">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1603044910103" />
-    <state x="383" y="121" key="refactoring.ChangeSignatureDialog" timestamp="1602951379133">
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1603125234027" />
+    <state x="383" y="121" key="refactoring.ChangeSignatureDialog" timestamp="1603169003582">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="383" y="121" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1602951379133" />
+    <state x="383" y="121" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1603169003582" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

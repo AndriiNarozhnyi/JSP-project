@@ -26,7 +26,7 @@ public class LoginCommand implements Command{
         }
         System.out.println(name + " " + pass);
 
-        Optional<User> user = Optional.ofNullable(UserService.users.get(name));
+        Optional<User> user = Optional.ofNullable(UserService.usersReserve.get(name));
 
         if(!user.isPresent()||!user.get().getPassword().equals(pass)){
             //TODO add check for "isActive"

@@ -6,12 +6,16 @@ import javax.servlet.http.HttpServletResponse;
 public class RegistrationCommand implements Command{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String name = request.getParameter("username");
-        String pass = request.getParameter("password");
+        String username = request.getParameter("username");
+        String usernameukr = request.getParameter("usernameukr");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-        if( name == null || name.equals("") || pass == null || pass.equals("")  ){
+        if( username == null || username.equals("") || usernameukr == null || usernameukr.equals("")
+              || email == null || email.equals("") ||password == null || password.equals("")  ){
             return "/registration.jsp";
         }
+
 
 
         return "redirect:/login.jsp";
