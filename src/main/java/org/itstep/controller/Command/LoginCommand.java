@@ -24,11 +24,11 @@ public class LoginCommand implements Command{
         if( name == null || name.equals("") || pass == null || pass.equals("")  ){
             return "/login.jsp";
         }
-        System.out.println(name + " " + pass);
 
-        Optional<User> user = Optional.ofNullable(UserService.usersReserve.get(name));
+        Optional<User> user = userService.findForLogin(name);
 
-        if(!user.isPresent()||!user.get().getPassword().equals(pass)){
+        if(!user.isPresent()||!user.get().getPassword().equals(pass)
+        ||!user.get().isActive()){
             //TODO add check for "isActive"
             return "/login.jsp";
         }
@@ -40,14 +40,14 @@ public class LoginCommand implements Command{
         if (user.get().getRoles().contains(Role.ADMIN)){
             CommandUtility.setUserRole(request, Role.ADMIN, user.get().getId());
             return "redirect:/admin/adminbasis.jsp";
+        } else if(user.get().getRoles().contains(Role.TEACHER)) {
+            CommandUtility.setUserRole(request, Role.TEACHER, user.get().getId());
+            return "redirect:/teacher/teacherbasis.jsp";
         } else if(user.get().getRoles().contains(Role.USER)) {
             CommandUtility.setUserRole(request, Role.USER, user.get().getId());
             ResourceBundle bundle = CommandUtility.setBundle(request);
             request.setAttribute("message1", bundle.getString("incEndDate"));
             return "/user/userbasis.jsp";
-        } else if(user.get().getRoles().contains(Role.TEACHER)) {
-            CommandUtility.setUserRole(request, Role.TEACHER, user.get().getId());
-            return "redirect:/teacher/teacherbasis.jsp";
         } else {
             CommandUtility.setUserRole(request, Role.UNKNOWN, -1L);
             return "/login.jsp";

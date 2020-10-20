@@ -2,9 +2,6 @@ package org.itstep.model.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,4 +19,16 @@ public class User {
     private boolean active;
     private Set<Role> roles;
     Set<Course> takenCourses = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", usernameukr='" + usernameukr + '\'' +
+                ", email='" + email + '\'' +
+                ", active=" + active +
+                ", roles=" + roles +
+                '}';
+    }
 }
