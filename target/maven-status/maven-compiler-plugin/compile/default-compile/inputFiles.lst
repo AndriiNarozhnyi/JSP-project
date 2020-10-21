@@ -19,6 +19,7 @@ D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\CourseD
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\LogOutCommand.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\impl\SQLConstants.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\filters\EncodingFilter.java
+D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\UserListCommand.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\mapper\CourseMapper.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\filters\SessionLocaleFilter.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\impl\JDBCCourseDao.java

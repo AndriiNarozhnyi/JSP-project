@@ -27,6 +27,8 @@ public class Servlet extends HttpServlet {
                 new LoginCommand(new UserService()));
         commands.put("/exception" , new ExceptionCommand());
         commands.put("/registration", new RegistrationCommand(new UserService()));
+        commands.put("/admin/user", new UserListCommand(new UserService()));
+        commands.put("/admin/user/edit", new UserEditCommand(new UserService()));
     }
 
     public void doGet(HttpServletRequest request,

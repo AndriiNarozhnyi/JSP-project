@@ -47,7 +47,7 @@
                 <%}%>
                 <% if (request.getSession().getAttribute("role")==Role.ADMIN){%>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user"><fmt:message key="UserEdit" /></a>
+                        <a class="nav-link" href="/admin/user"><fmt:message key="UserEdit" /></a>
                     </li>
                 <%}%>
             </ul>
@@ -56,14 +56,16 @@
         <a class="btn btn-primary mx-2" href="?sessionLocale=uk"><fmt:message key="switch-uk" /></a>
             <% if(request.getSession().getAttribute("role")==null
                     ||request.getSession().getAttribute("role")==Role.UNKNOWN){%>
-
                     <a class="btn btn-success mx-2" href="/login"><fmt:message key="login" /></a>
-                    <a class="btn btn-success mx-2" href="/registration" ><fmt:message key="registration" /></a>
+            <%}%>
+            <% if(request.getSession().getAttribute("role")==null
+                    ||request.getSession().getAttribute("role")==Role.UNKNOWN){%>
+            <a class="btn btn-success mx-2" href="/registration" ><fmt:message key="registration" /></a>
             <%}%>
             <% if(request.getSession().getAttribute("role")!=null&&request.getSession().getAttribute("role")!= Role.UNKNOWN){%>
                     <form action="/logout" method="post">
 <%--                        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />--%>
-                        <input type="submit" class="btn btn-warning mx-2" value=<fmt:message key="signout" />/>
+                        <input type="submit" class="btn btn-warning mx-2 mt-3" value=<fmt:message key="signout" />>
                     </form>
             <%}%>
 

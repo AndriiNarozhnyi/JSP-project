@@ -69,13 +69,13 @@ public class JDBCUserDao implements UserDao, SQLConstants{
 
             while (rs.next()) {
                 user = userMapper
-                        .extractFromResultSet(rs);
-                roles.add((userMapper.roleMap.get(rs.getString("role"))));
+                        .extractFromResultSetP(rs);
+                roles.add((userMapper.roleMap.get(rs.getString(8))));
                 user = userMapper
                         .makeUnique(users, user);
                 user.getRoles().addAll(roles);
             }
-            return Optional.ofNullable(user);
+            return Optional.of(user);
 
 
         }catch (Exception ex){
@@ -90,13 +90,10 @@ public class JDBCUserDao implements UserDao, SQLConstants{
     public List<User> findAll() {
         Map<Long, User> users = new HashMap<>();
         Map<Long, Course> courses = new HashMap<>();
+        Set<Role> roles = new HashSet<>();
 
-        final String query = "" +
-                " select * from usr" +
-                " left join usr_has_course using (id_usr)" +
-                " left join course using (id_course)";
         try (Statement st = connection.createStatement()) {
-            ResultSet rs = st.executeQuery(query);
+            ResultSet rs = st.executeQuery(SQL_FIND_ALL_USERS);
 
             CourseMapper courseMapper = new CourseMapper();
             UserMapper userMapper = new UserMapper();
@@ -104,13 +101,15 @@ public class JDBCUserDao implements UserDao, SQLConstants{
             while (rs.next()) {
                 User user = userMapper
                         .extractFromResultSet(rs);
-                Course course = courseMapper
-                        .extractFromResultSet(rs);
                 user = userMapper
                         .makeUnique(users, user);
-                course = courseMapper
-                        .makeUnique(courses, course);
-                user.getTakenCourses().add(course);
+//                if (users.keySet().contains(user.getId())){
+                    users.get(user.getId()).getRoles().add((userMapper.roleMap.get(rs.getString(8))));
+//                } else {
+//                    user.getRoles().add((userMapper.roleMap.get(rs.getString(8))));
+//                }
+
+//                user.getRoles().addAll(roles);
             }
             return new ArrayList<>(users.values());
         } catch (SQLException e) {

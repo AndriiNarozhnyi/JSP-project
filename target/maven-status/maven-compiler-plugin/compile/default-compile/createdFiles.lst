@@ -11,6 +11,7 @@ org\itstep\model\dao\mapper\UserMapper.class
 org\itstep\model\entity\Course$CourseBuilder.class
 org\itstep\model\entity\Role.class
 org\itstep\model\dao\DaoFactory.class
+org\itstep\controller\Command\UserListCommand.class
 org\itstep\controller\Command\Command.class
 org\itstep\controller\Command\ExceptionCommand.class
 org\itstep\model\entity\User$UserBuilder.class

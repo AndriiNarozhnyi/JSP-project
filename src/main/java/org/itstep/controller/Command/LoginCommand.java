@@ -29,7 +29,6 @@ public class LoginCommand implements Command{
 
         if(!user.isPresent()||!user.get().getPassword().equals(pass)
         ||!user.get().isActive()){
-            //TODO add check for "isActive"
             return "/login.jsp";
         }
 

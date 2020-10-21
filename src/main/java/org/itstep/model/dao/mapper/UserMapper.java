@@ -17,15 +17,24 @@ public class UserMapper implements ObjectMapper<User> {
             {"UNKNOWN", Role.UNKNOWN}
     }).collect(Collectors.toMap(data-> (String)data[0], data->(Role)data[1]));
 
+    public User extractFromResultSetP(ResultSet rs) throws SQLException {
+        User user = new User();
+        user.setId(rs.getLong(1));
+        user.setUsername(rs.getString(2));
+        user.setUsernameukr(rs.getString(3));
+        user.setEmail(rs.getString(4));
+        user.setPassword(rs.getString(5));
+        user.setActive(rs.getBoolean(6));
+        return user;
+    }
     @Override
     public User extractFromResultSet(ResultSet rs) throws SQLException {
         User user = new User();
-        user.setId(rs.getLong("id"));
-        user.setUsername(rs.getString("username"));
-        user.setUsernameukr(rs.getString("usernameukr"));
-        user.setEmail(rs.getString("email"));
-        user.setPassword(rs.getString("password"));
-        user.setActive(rs.getBoolean("active"));
+        user.setId(rs.getLong(1));
+        user.setUsername(rs.getString(2));
+        user.setUsernameukr(rs.getString(3));
+        user.setEmail(rs.getString(4));
+        user.setActive(rs.getBoolean(6));
         return user;
     }
 

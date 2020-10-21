@@ -17,7 +17,7 @@ public class User {
     private String email;
     private String password;
     private boolean active;
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
     Set<Course> takenCourses = new HashSet<>();
 
     @Override
