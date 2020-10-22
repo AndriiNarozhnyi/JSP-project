@@ -105,6 +105,77 @@ public class JDBCUserDao implements UserDao, SQLConstants{
     }
 
     @Override
+    public boolean saveEditedUser(User user) {
+        boolean res1 = false;
+        boolean res2= false;
+        boolean res3= false;
+        try(PreparedStatement ps = connection.prepareStatement(SQL_UPDATE_USER)){
+            ps.setString( 1, user.getUsername());
+            ps.setString( 2, user.getUsernameukr());
+            ps.setString( 3, user.getEmail());
+            ps.setBoolean( 4, user.isActive());
+            ps.setLong(5, user.getId());
+
+           int rs = ps.executeUpdate();
+            if (rs > 0) {
+                res1 = true;
+                }
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
+        try(PreparedStatement ps = connection.prepareStatement(SQL_DELETE_USER_ROLES)){
+            ps.setLong( 1, user.getId());
+
+            int rs = ps.executeUpdate();
+            if (rs > 0) {
+                res2 = true;
+            }
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
+
+        for (Role role : user.getRoles()){
+            try(PreparedStatement ps = connection.prepareCall(SQL_ADD_ROLE_FOR_USER)){
+                ps.setLong(1, user.getId());
+                ps.setString( 2, role.toString());
+                res3 = ps.executeUpdate()>0;
+            }catch (Exception ex){
+                throw new RuntimeException(ex);
+            }
+        }
+        return res1&&res2&&res3;
+    }
+
+    @Override
+    public List<User> findUsersByFilter(String fusername, String fusernameukr) {
+        Map<Long, User> users = new HashMap<>();
+        Map<Long, Course> courses = new HashMap<>();
+        Set<Role> roles = new HashSet<>();
+
+        try (PreparedStatement ps = connection.prepareStatement(SQL_FIND_USERS_BY_FILTER)) {
+            ps.setString(1, "%" + fusername+"%");
+            ps.setString(2, "%" +fusernameukr+"%");
+            ResultSet rs = ps.executeQuery();
+
+            CourseMapper courseMapper = new CourseMapper();
+            UserMapper userMapper = new UserMapper();
+
+            while (rs.next()) {
+                User user = userMapper
+                        .extractFromResultSet(rs);
+                user = userMapper
+                        .makeUnique(users, user);
+                users.get(user.getId()).getRoles().add((userMapper.roleMap.get(rs.getString(8))));
+
+            }
+            return new ArrayList<>(users.values());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public List<User> findAll() {
         Map<Long, User> users = new HashMap<>();
         Map<Long, Course> courses = new HashMap<>();

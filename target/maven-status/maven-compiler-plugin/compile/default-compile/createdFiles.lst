@@ -1,4 +1,5 @@
 org\itstep\controller\Command\LoginCommand.class
+org\itstep\controller\Command\UserSaveCommand.class
 org\itstep\model\entity\Course.class
 org\itstep\controller\listener\SessionListener.class
 org\itstep\model\dao\impl\SQLConstants.class
@@ -17,6 +18,7 @@ org\itstep\controller\Command\Command.class
 org\itstep\controller\Command\ExceptionCommand.class
 org\itstep\model\entity\User$UserBuilder.class
 org\itstep\controller\filters\AuthFilter.class
+org\itstep\controller\Command\UserFilterCommand.class
 org\itstep\model\dao\UserDao.class
 org\itstep\model\dao\impl\ConnectionPoolHolder.class
 org\itstep\controller\Command\LogOutCommand.class

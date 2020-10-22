@@ -16,6 +16,12 @@ public interface SQLConstants {
 //            "ON u.id=uhc.usr_id JOIN course c ON uhc.course_id=c.id JOIN usr t ON c.usr_id=t.id";
     String SQL_FIND_ALL_USERS = "select u.*, r.* from usr u LEFT JOIN role r on u.id=r.usr_id";
 
+    String SQL_UPDATE_USER = "UPDATE usr SET username = ?, usernameukr = ?, email = ?, active = ? WHERE id =?";
+    String SQL_DELETE_USER_ROLES = "DELETE FROM role r WHERE r.usr_id =?";
+
+    String SQL_FIND_USERS_BY_FILTER = "select u.*, r.role from usr u LEFT JOIN role r ON u.id=r.usr_id where u.username LIKE ?" +
+            "and u.usernameukr like ?";
+
 
 
 

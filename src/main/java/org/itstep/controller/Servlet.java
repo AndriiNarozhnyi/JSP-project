@@ -30,6 +30,7 @@ public class Servlet extends HttpServlet {
         commands.put("/admin/user", new UserListCommand(new UserService()));
         commands.put("/admin/user/edit", new UserEditCommand(new UserService()));
         commands.put("/admin/user/save", new UserSaveCommand(new UserService()));
+        commands.put("/admin/user/filter", new UserFilterCommand(new UserService()));
     }
 
     public void doGet(HttpServletRequest request,

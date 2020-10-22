@@ -43,4 +43,20 @@ public class UserService {
         }
         return user;
     }
+
+    public boolean saveEditedUser(User user) {
+        boolean res = false;
+        try (UserDao dao = daoFactory.createUserDao()) {
+            res = dao.saveEditedUser(user);
+        }
+        return res;
+    }
+
+    public List<User> findUsersByFilter(String fusername, String fusernameukr) {
+        List<User> users;
+        try (UserDao dao = daoFactory.createUserDao()) {
+            users = dao.findUsersByFilter(fusername, fusernameukr);
+        }
+        return users;
+    }
 }

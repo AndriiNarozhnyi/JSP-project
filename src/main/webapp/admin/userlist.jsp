@@ -19,28 +19,28 @@
 <%@ include file="/templates/header1.jsp"%>
 <div class="container">
 <h3><fmt:message key="listUsr" /></h3>
-<%--    <form action="/user/filter" method="get">--%>
-<%--        <div class="row justify-content-md-left">--%>
-<%--            <div class="col col-lg-1">--%>
-<%--                <label><fmt:message key="username" /></label>--%>
-<%--            </div>--%>
-<%--            <div class="col col-lg-2">--%>
-<%--                <input type="text" name="fusername" th:value="${fusername}?${fusername}:''">--%>
-<%--            </div>--%>
-<%--            <div class="col col-lg-1">--%>
-<%--                <label><fmt:message key="usernameUkr" /></label>--%>
-<%--            </div>--%>
-<%--            <div class="col col-lg-2">--%>
-<%--                <input type="text" name="fusernameukr" th:value="${fusernameukr}?${fusernameukr}:''">--%>
-<%--            </div>--%>
-<%--            <div class="col col-lg-1">--%>
-<%--                <button class="btn btn-primary" type="submit"><fmt:message key="filter" /></button>--%>
-<%--            </div>--%>
-<%--            <div class="col col-lg-2">--%>
-<%--            <a href="/user" class="btn btn-warning"><fmt:message key="resetFilter" /></a>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </form>--%>
+    <form action="/admin/user/filter" method="get">
+        <div class="row justify-content-md-left">
+            <div class="col col-lg-1">
+                <label><fmt:message key="username" /></label>
+            </div>
+            <div class="col col-lg-2">
+                <input type="text" name="fusername" value=<%out.print(request.getAttribute("fusername")==null?"":request.getAttribute("fusername"));%>>
+            </div>
+            <div class="col col-lg-1">
+                <label><fmt:message key="usernameUkr" /></label>
+            </div>
+            <div class="col col-lg-2">
+                <input type="text" name="fusernameukr" value=<%out.print(request.getAttribute("fusernameukr")==null?"":request.getAttribute("fusernameukr"));%>>
+            </div>
+            <div class="col col-lg-1">
+                <button class="btn btn-primary" type="submit"><fmt:message key="filter" /></button>
+            </div>
+            <div class="col col-lg-2">
+            <a href="/user" class="btn btn-warning"><fmt:message key="resetFilter" /></a>
+            </div>
+        </div>
+    </form>
 <table>
     <thead>
     <tr class="text-center">

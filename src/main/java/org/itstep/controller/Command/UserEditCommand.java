@@ -23,18 +23,8 @@ public class UserEditCommand implements Command{
         User user = userService.findById(userId).orElseThrow(()-> new RuntimeException(
                 CommandUtility.setBundle(request).getString("NoUsrWithId")));
         request.setAttribute("user", user);
-//        request.setAttribute("roles", Arrays.stream(Role.values())
-//                .collect(Collectors.toSet()).removeIf(r -> r.equals(Role.UNKNOWN)));
         request.setAttribute("roles", Arrays.stream(Role.values())
                 .filter(r->!r.equals(Role.UNKNOWN)).collect(Collectors.toSet()));
-        System.out.println(user.getRoles().contains(Role.ADMIN));
-        Set<String> rolest = new HashSet<>();
-        for (Role role: user.getRoles()){
-            rolest.add(role.toString());
-        }
-        request.setAttribute("rolest", rolest);
-        System.out.println(user.getRoles());
-        System.out.println(user.getRoles());
         return "/admin/userEdit.jsp";
     }
 }

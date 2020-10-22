@@ -25,7 +25,7 @@ Set<String> rolest = (Set<String>)request.getAttribute("rolest");%>
 <%--            <span th:text="${err.getValue()}"></span>--%>
 <%--        </div>--%>
 
-<form action="admin/user/save" method="post">
+<form action="/admin/user/save" method="post">
     <div class="row justify-content-md-left">
         <div class="col col-lg-2">
             <label><fmt:message key="username" /></label>
@@ -51,15 +51,14 @@ Set<String> rolest = (Set<String>)request.getAttribute("rolest");%>
         </div>
     </div>
     <h3><fmt:message key="userStatus" /></h3>
-    <label ><fmt:message key="active" /></label><input type="checkbox" name="isActive" value="<%user.isActive();%>"
-    <%= (user.isActive() ? "checked" : "") %>>
+    <label ><fmt:message key="active" /></label><input type="checkbox" name="isActive"
+    <%=(user.isActive() ? "checked":"")%>>
     <h3><fmt:message key="userAuth" /></h3>
     <table>
         <tbody>
         <% for (Role role:roles){%>
         <tr>
             <td><label><%=role.toString()%></label><input type="checkbox" name="<%=role.toString()%>"
-                                                          value=<%=user.getRoles().contains(role)%>
             <%=(user.getRoles().contains(role)?"checked":"")%>></td>
         </tr>
         <%}%>
