@@ -5,6 +5,7 @@
 <%@ page session="true" %>
 <%@ page import="java.util.*, java.text.*" %>
 <%@ page import="org.itstep.model.entity.User" %>
+<%@ page import="java.util.stream.Collectors" %>
 
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="res"/>
@@ -16,6 +17,9 @@
 </head>
 <body>
 <%@ include file="/templates/header1.jsp"%>
+<% User user = (User)request.getAttribute("user");%>
+<% Set<Role> roles = (Set<Role>)request.getAttribute("roles");
+Set<String> rolest = (Set<String>)request.getAttribute("rolest");%>
 <div class="container">
 <%--        <div th:each="err : ${error}">--%>
 <%--            <span th:text="${err.getValue()}"></span>--%>
@@ -27,7 +31,7 @@
             <label><fmt:message key="username" /></label>
         </div>
         <div class="col col-lg-3">
-            <input type="text" name="username" th:value="${user.username}">
+            <input type="text" name="username" value="<%=user.getUsername()%>">
         </div>
     </div>
     <div class="row justify-content-md-left">
@@ -35,7 +39,7 @@
             <label><fmt:message key="usernameUkr" /></label>
         </div>
         <div class="col col-lg-3">
-            <input type="text" name="usernameukr" th:value="${user.usernameukr}">
+            <input type="text" name="usernameukr" value="<%=user.getUsernameukr()%>">
         </div>
     </div>
     <div class="row justify-content-md-left">
@@ -43,22 +47,25 @@
             <label><fmt:message key="email" /></label>
         </div>
         <div class="col col-lg-3">
-            <input type="text" name="email" th:value="${user.email}">
+            <input type="text" name="email" value="<%=user.getEmail()%>">
         </div>
     </div>
     <h3><fmt:message key="userStatus" /></h3>
-    <label ><fmt:message key="active" /></label><input type="checkbox" name="isActive" th:checked="${user.isActive()}">
+    <label ><fmt:message key="active" /></label><input type="checkbox" name="isActive" value="<%user.isActive();%>">
     <h3><fmt:message key="userAuth" /></h3>
     <table>
         <tbody>
-        <tr th:each="role:${roles}">
-            <td><label th:text="${role}"></label><input type="checkbox" th:name="${role}" th:checked="${user.roles.contains(role)}"></td>
+        <% for (Role role:roles){%>
+        <tr>
+            <td><label><%=role.toString()%></label><input type="checkbox" name="<%=role.toString()%>"
+                                                          value=<%=rolest.contains(role.toString())%>></td>
         </tr>
+        <%}%>
         </tbody>
     </table>
-    <input type="hidden" th:value="${user.id}" name="userId">
-    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-    <input type="submit" th:value="<fmt:message key="username" />">
+    <input type="hidden" value="<%=user.getId()%>" name="userId">
+<%--    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />--%>
+    <input type="submit" value="<fmt:message key="save"/>">
 </form>
 </div>
 </body>

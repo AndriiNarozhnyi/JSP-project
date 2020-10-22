@@ -54,7 +54,8 @@
         <td colspan="2"><fmt:message key="noUsAv" /></td>
     </tr>
     <%}%>
-    <% for (User user: users){%>
+    <% for (User user: users){
+    String id = String.valueOf(user.getId());%>
     <tr class="text-center">
         <td><span><% out.print(user.getId());%></span></td>
         <td><span><% out.print(user.getUsername());%></span></td>
@@ -62,7 +63,7 @@
         <td><span><% out.print(user.getEmail());%></span></td>
         <td><span><% out.print(user.isActive()?"YES":"NO");%></span></td>
         <td><span><% out.print(user.getRoles());%></span></td>
-        <td><a href="/admin/user/edit?userId=<%=user.getId()%>"><fmt:message key="edit" /></a></td>
+        <td><a href="/admin/user/edit?userId=<%=id%>"><fmt:message key="edit" /></a></td>
     </tr>
     <%}%>
     </tbody>

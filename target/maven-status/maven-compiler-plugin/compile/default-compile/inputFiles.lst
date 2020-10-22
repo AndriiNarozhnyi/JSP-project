@@ -22,6 +22,7 @@ D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\filter
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\UserListCommand.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\mapper\CourseMapper.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\filters\SessionLocaleFilter.java
+D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\UserEditCommand.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\impl\JDBCCourseDao.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\impl\JDBCUserDao.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\entity\Role.java

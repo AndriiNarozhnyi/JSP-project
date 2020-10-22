@@ -23,7 +23,8 @@ public class JDBCCourseDao implements CourseDao {
     }
 
     @Override
-    public Course findById(int id) {
+    public Optional<Course> findById(Long id) {
+
         return null;
     }
 

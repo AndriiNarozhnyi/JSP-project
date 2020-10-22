@@ -9,6 +9,8 @@ public interface SQLConstants {
 
     String SQL_FIND_USER_FOR_LOGIN = "SELECT u.*, r.role FROM usr u JOIN role r ON u.id=r.usr_id " +
             "WHERE u.username = ?";
+    String SQL_FIND_USER_BY_ID = "SELECT u.*, r.role FROM usr u LEFT JOIN role r ON u.id=r.usr_id " +
+            "WHERE u.id = ?";
 
 //    String SQL_FIND_ALL_USERS = "select u.*, r.*, c.*, t.* from usr u JOIN role r on u.id=r.usr_id JOIN usr_has_course uhc \n" +
 //            "ON u.id=uhc.usr_id JOIN course c ON uhc.course_id=c.id JOIN usr t ON c.usr_id=t.id";

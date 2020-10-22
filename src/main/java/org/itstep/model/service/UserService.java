@@ -35,4 +35,12 @@ public class UserService {
         }
         return users;
     }
+
+    public Optional<User> findById(Long userId) {
+        Optional<User> user = Optional.empty();
+        try (UserDao dao = daoFactory.createUserDao()) {
+            user = dao.findById(userId);
+        }
+        return user;
+    }
 }

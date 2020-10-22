@@ -53,8 +53,28 @@ public class JDBCUserDao implements UserDao, SQLConstants{
     }
 
     @Override
-    public User findById(int id) {
-        return null;
+    public Optional<User> findById(Long id) {
+        Map<Long, User> users = new HashMap<>();
+        try(PreparedStatement ps = connection.prepareStatement(SQL_FIND_USER_BY_ID)){
+            ps.setLong( 1, id);
+            ResultSet rs = ps.executeQuery();
+            User user = new User();
+
+            UserMapper userMapper = new UserMapper();
+
+            while (rs.next()) {
+                user = userMapper
+                        .extractFromResultSet(rs);
+                user = userMapper
+                        .makeUnique(users, user);
+                users.get(user.getId()).getRoles().add((userMapper.roleMap.get(rs.getString(8))));
+            }
+            return Optional.of(users.get(user.getId()));
+
+
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
     }
 
     public Optional<User> findForLogin (String username){
@@ -62,7 +82,6 @@ public class JDBCUserDao implements UserDao, SQLConstants{
         try(PreparedStatement ps = connection.prepareStatement(SQL_FIND_USER_FOR_LOGIN)){
             ps.setString( 1, username);
             ResultSet rs = ps.executeQuery();
-            Set<Role> roles = new HashSet<>();
             User user = new User();
 
             UserMapper userMapper = new UserMapper();
@@ -70,12 +89,11 @@ public class JDBCUserDao implements UserDao, SQLConstants{
             while (rs.next()) {
                 user = userMapper
                         .extractFromResultSetP(rs);
-                roles.add((userMapper.roleMap.get(rs.getString(8))));
                 user = userMapper
                         .makeUnique(users, user);
-                user.getRoles().addAll(roles);
+                users.get(user.getId()).getRoles().add((userMapper.roleMap.get(rs.getString(8))));
             }
-            return Optional.of(user);
+            return Optional.of(users.get(user.getId()));
 
 
         }catch (Exception ex){
@@ -103,13 +121,8 @@ public class JDBCUserDao implements UserDao, SQLConstants{
                         .extractFromResultSet(rs);
                 user = userMapper
                         .makeUnique(users, user);
-//                if (users.keySet().contains(user.getId())){
                     users.get(user.getId()).getRoles().add((userMapper.roleMap.get(rs.getString(8))));
-//                } else {
-//                    user.getRoles().add((userMapper.roleMap.get(rs.getString(8))));
-//                }
 
-//                user.getRoles().addAll(roles);
             }
             return new ArrayList<>(users.values());
         } catch (SQLException e) {
