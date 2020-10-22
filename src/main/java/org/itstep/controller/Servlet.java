@@ -29,6 +29,7 @@ public class Servlet extends HttpServlet {
         commands.put("/registration", new RegistrationCommand(new UserService()));
         commands.put("/admin/user", new UserListCommand(new UserService()));
         commands.put("/admin/user/edit", new UserEditCommand(new UserService()));
+        commands.put("/admin/user/save", new UserSaveCommand(new UserService()));
     }
 
     public void doGet(HttpServletRequest request,
