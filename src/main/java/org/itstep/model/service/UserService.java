@@ -8,7 +8,6 @@ import org.itstep.model.entity.User;
 import java.util.*;
 
 public class UserService {
-    public static Map<String, User> usersReserve = new HashMap<>();
     DaoFactory daoFactory = DaoFactory.getInstance();
 
     public UserService() {

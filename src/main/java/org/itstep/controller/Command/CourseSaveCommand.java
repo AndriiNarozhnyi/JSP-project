@@ -1,5 +1,6 @@
 package org.itstep.controller.Command;
 
+import org.itstep.model.entity.Course;
 import org.itstep.model.entity.User;
 import org.itstep.model.service.CourseService;
 import org.itstep.model.service.UserService;
@@ -7,9 +8,12 @@ import org.itstep.model.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class CourseSaveCommand implements Command{
     private UserService userService;
@@ -31,15 +35,28 @@ public class CourseSaveCommand implements Command{
         if(!(boolean)res.get(1)){
             paramMap.forEach(request::setAttribute);
             answerMap.forEach(request::setAttribute);
+            request.setAttribute("selectedTeacher", paramMap.get("teacherId"));
             return "/admin/CourseCreate.jsp";
         }
 
-//        User teacher = userService.findbyId(Long.parseLong(paramMap.get("teacherId")));
-//        if(courseService.checkNameDateTeacher(form.get("name"), form.get("startDate"), teacher)){
-//            model.addAttribute("CourseNameDateTeacherPresent", messageSource.getMessage("courAlEx", null, locale));
-//            model.mergeAttributes((Map)res.get(0));
-//            return "AdminCourse";
-//        }
+        User teacher = userService.findById(Long.parseLong(paramMap.get("teacherId")))
+                .orElseThrow(()-> new RuntimeException(CommandUtility.setBundle(request).getString("NoUsrWithId")));
+        if(courseService.checkNameDateTeacher(paramMap.get("name"), paramMap.get("startDate"), teacher.getId())){
+            request.setAttribute("courAlEx", CommandUtility.setBundle(request).getString("courAlEx"));
+            paramMap.forEach(request::setAttribute);
+            return "AdminCourse";
+        }
+
+        courseService.saveNewCourse(Course.builder()
+                .name(paramMap.get("name"))
+                .nameukr(paramMap.get("nameukr"))
+                .topic(paramMap.get("topic"))
+                .topicukr(paramMap.get("topicukr"))
+                .startDate(LocalDate.parse(paramMap.get("startDate")).plusDays(1))
+                .duration(DAYS.between(LocalDate.parse(paramMap.get("startDate")), LocalDate.parse(paramMap.get("endDate")).plusDays(1)))
+                .endDate(LocalDate.parse(paramMap.get("endDate")))
+                .teacher(teacher)
+                .build());
 
         return "/admin/CourseCreate.jsp";
     }

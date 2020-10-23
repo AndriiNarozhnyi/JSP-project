@@ -28,5 +28,11 @@ public interface SQLConstants {
 
 
 
+    String SQL_CREATE_NEW_COURSE = ""
+
+
+
+
+
 
 }

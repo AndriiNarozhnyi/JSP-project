@@ -19,13 +19,6 @@
 <%@ include file="/templates/header1.jsp"%>
 <div class="container">
     <h3><fmt:message key="createCourse" /></h3>
-    <%out.print(request.getAttribute("incname")==null?"":request.getAttribute("incname"));%><br>
-    <%out.print(request.getAttribute("incnameukr")==null?"":request.getAttribute("incnameukr"));%><br>
-    <%out.print(request.getAttribute("inctopic")==null?"":request.getAttribute("inctopic"));%><br>
-    <%out.print(request.getAttribute("inctopicukr")==null?"":request.getAttribute("inctopicukr"));%><br>
-    <%out.print(request.getAttribute("incStartDate")==null?"":request.getAttribute("incStartDate"));%><br>
-    <%out.print(request.getAttribute("incEndDate")==null?"":request.getAttribute("incEndDate"));%><br>
-    <%out.print(request.getAttribute("incendBeforeStart")==null?"":request.getAttribute("incendBeforeStart"));%><br>
 
     <form action="/admin/save" method="post">
         <div class="container">
@@ -36,6 +29,10 @@
                 <div class="col col-lg-3">
                     <input type="text" name="name" value=<%out.print(request.getAttribute("name")==null?"":request.getAttribute("name"));%>>
                 </div>
+                <% if (request.getAttribute("incname")!=null){%>
+                <div class="alert alert-danger" role="alert">
+                    <%out.println(request.getAttribute("incname"));%>
+                </div><%}%>
             </div>
             <div class="row justify-content-md-left">
                 <div class="col col-lg-2">
@@ -44,6 +41,10 @@
                 <div class="col col-lg-3">
                     <input type="text" name="nameukr" value=<%out.print(request.getAttribute("nameukr")==null?"":request.getAttribute("nameukr"));%>>
                 </div>
+                <% if (request.getAttribute("incnameukr")!=null){%>
+                <div class="alert alert-danger" role="alert">
+                    <%out.println(request.getAttribute("incnameukr"));%>
+                </div><%}%>
             </div>
             <div class="row justify-content-md-left">
                 <div class="col col-lg-2">
@@ -52,6 +53,10 @@
                 <div class="col col-lg-3">
                     <input type="text" name="topic" value=<%out.print(request.getAttribute("topic")==null?"":request.getAttribute("topic"));%>>
                 </div>
+                <% if (request.getAttribute("inctopic")!=null){%>
+                <div class="alert alert-danger" role="alert">
+                    <%out.println(request.getAttribute("inctopic"));%>
+                </div><%}%>
             </div>
             <div class="row justify-content-md-left">
                 <div class="col col-lg-2">
@@ -60,6 +65,10 @@
                 <div class="col col-lg-3">
                     <input type="text" name="topicukr" value=<%out.print(request.getAttribute("topicukr")==null?"":request.getAttribute("topicukr"));%>>
                 </div>
+                <% if (request.getAttribute("inctopicukr")!=null){%>
+                <div class="alert alert-danger" role="alert">
+                    <%out.println(request.getAttribute("inctopicukr"));%>
+                </div><%}%>
             </div>
             <div class="row justify-content-md-left">
                 <div class="col col-lg-2">
@@ -68,6 +77,10 @@
                 <div class="col col-lg-3">
                     <input type="date" name="startDate" value=<%out.print(request.getAttribute("startDate")==null?"":request.getAttribute("startDate"));%>>
                 </div>
+                <% if (request.getAttribute("incStartDate")!=null){%>
+                <div class="alert alert-danger" role="alert">
+                    <%out.println(request.getAttribute("incStartDate"));%>
+                </div><%}%>
             </div>
             <div class="row justify-content-md-left">
                 <div class="col col-lg-2">
@@ -76,9 +89,17 @@
                 <div class="col col-lg-3">
                     <input type="date" name="endDate" value=<%out.print(request.getAttribute("endDate")==null?"":request.getAttribute("startDate"));%>>
                 </div>
+                <% if (request.getAttribute("incEndDate")!=null){%>
+                <div class="alert alert-danger" role="alert">
+                    <%out.println(request.getAttribute("incEndDate"));%>
+                </div><%}%>
+                <% if (request.getAttribute("incendBeforeStart")!=null){%>
+                <div class="alert alert-danger" role="alert">
+                    <%out.println(request.getAttribute("incendBeforeStart"));%>
+                </div><%}%>
             </div>
             <div class="row justify-content-md-left">
-                <div class="col col-lg-2">
+                <div class="col col-lg-3">
                     <Label><fmt:message key="selectTeacher" /></Label>
                 </div>
                 <div class="col col-lg-2">
@@ -86,11 +107,14 @@
                         <option value="0"></option>
                         <c:forEach items="${teachers}" var="teacher">
                             <option value="${teacher.id}"
-                                    <c:if test="${teacher.username eq selectedTeacher}">selected="selected"</c:if>>
+                                    <c:if test="${teacher.id eq selectedTeacher}">selected="selected"</c:if>>
                                     ${teacher.username}
                             </option>
                         </c:forEach>
                     </select>
+<%--                    <div class="alert alert-danger" role="alert">--%>
+<%--                        This is a danger alert—check it out!--%>
+<%--                    </div>--%>
                 </div>
             </div>
 

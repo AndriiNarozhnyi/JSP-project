@@ -19,9 +19,6 @@ public class JDBCUserDao implements UserDao, SQLConstants{
 
     @Override
     public void create(User user) {
-        boolean res1;
-        boolean res2 = true;
-        long newId;
         try(PreparedStatement ps = connection.prepareStatement(SQL_CREATE_NEW_USER, Statement.RETURN_GENERATED_KEYS)){
             ps.setString( 1, user.getUsername());
             ps.setString( 2, user.getUsernameukr());
@@ -34,7 +31,6 @@ public class JDBCUserDao implements UserDao, SQLConstants{
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     user.setId(((Long) rs.getLong(1)));
-                    res1 = true;
                 }
             }
         }catch (Exception ex){
@@ -44,7 +40,6 @@ public class JDBCUserDao implements UserDao, SQLConstants{
             try(PreparedStatement ps = connection.prepareCall(SQL_ADD_ROLE_FOR_USER)){
                 ps.setLong(1, user.getId());
                 ps.setString( 2, role.toString());
-                res2 = res2&&ps.executeUpdate()>0;
             }catch (Exception ex){
                 throw new RuntimeException(ex);
             }
