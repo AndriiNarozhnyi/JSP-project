@@ -42,7 +42,7 @@
                 <%}%>
                     <% if (request.getSession().getAttribute("role")==Role.ADMIN){%>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admincreate"><fmt:message key="CreateCourse" /></a>
+                        <a class="nav-link" href="/admin/create"><fmt:message key="CreateCourse" /></a>
                     </li>
                 <%}%>
                 <% if (request.getSession().getAttribute("role")==Role.ADMIN){%>

@@ -5,6 +5,7 @@ org\itstep\controller\listener\SessionListener.class
 org\itstep\model\dao\impl\SQLConstants.class
 org\itstep\controller\filters\EncodingFilter.class
 org\itstep\model\dao\impl\JDBCDaoFactory.class
+org\itstep\model\service\CourseService.class
 org\itstep\model\service\UserService.class
 org\itstep\controller\filters\SessionLocaleFilter.class
 org\itstep\controller\Servlet.class
@@ -21,9 +22,11 @@ org\itstep\controller\filters\AuthFilter.class
 org\itstep\controller\Command\UserFilterCommand.class
 org\itstep\model\dao\UserDao.class
 org\itstep\model\dao\impl\ConnectionPoolHolder.class
+org\itstep\controller\Command\CourseSaveCommand.class
 org\itstep\controller\Command\LogOutCommand.class
 org\itstep\model\dao\impl\JDBCUserDao.class
 org\itstep\model\entity\User.class
+org\itstep\controller\Command\CourseCreateCommand.class
 org\itstep\controller\Command\RegistrationCommand.class
 org\itstep\model\dao\impl\JDBCCourseDao.class
 org\itstep\model\dao\mapper\CourseMapper.class

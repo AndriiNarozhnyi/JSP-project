@@ -37,7 +37,7 @@
                 <button class="btn btn-primary" type="submit"><fmt:message key="filter" /></button>
             </div>
             <div class="col col-lg-2">
-            <a href="/user" class="btn btn-warning"><fmt:message key="resetFilter" /></a>
+            <a href="/admin/user" class="btn btn-warning"><fmt:message key="resetFilter" /></a>
             </div>
         </div>
     </form>

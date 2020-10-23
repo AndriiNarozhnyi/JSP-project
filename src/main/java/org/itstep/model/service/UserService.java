@@ -59,4 +59,12 @@ public class UserService {
         }
         return users;
     }
+
+    public List<User> getAllTeachers() {
+        List<User> users;
+        try (UserDao dao = daoFactory.createUserDao()) {
+            users = dao.getAllTeachers();
+        }
+        return users;
+    }
 }

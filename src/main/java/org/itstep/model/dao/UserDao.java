@@ -11,4 +11,5 @@ public interface UserDao extends GenericDao<User>{
     Optional<User> findForLogin(String username);
     boolean saveEditedUser(User user);
     List<User> findUsersByFilter(String fusername, String fusernameukr);
+    List<User> getAllTeachers();
 }

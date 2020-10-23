@@ -21,6 +21,8 @@ public interface SQLConstants {
 
     String SQL_FIND_USERS_BY_FILTER = "select u.*, r.role from usr u LEFT JOIN role r ON u.id=r.usr_id where u.username LIKE ?" +
             "and u.usernameukr like ?";
+    String SQL_FIND_ALL_TEACHERS = "select u.*, r.role from usr u JOIN role r ON u.id=r.usr_id " +
+            "WHERE u.active='1' AND r.role='TEACHER'";
 
 
 

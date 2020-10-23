@@ -1,6 +1,7 @@
 package org.itstep.controller;
 
 import org.itstep.controller.Command.*;
+import org.itstep.model.service.CourseService;
 import org.itstep.model.service.UserService;
 
 import javax.servlet.ServletConfig;
@@ -31,13 +32,14 @@ public class Servlet extends HttpServlet {
         commands.put("/admin/user/edit", new UserEditCommand(new UserService()));
         commands.put("/admin/user/save", new UserSaveCommand(new UserService()));
         commands.put("/admin/user/filter", new UserFilterCommand(new UserService()));
+        commands.put("/admin/create", new CourseCreateCommand(new UserService()));
+        commands.put("/admin/save", new CourseSaveCommand(new UserService(), new CourseService()));
     }
 
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
             throws IOException, ServletException {
         processRequest(request, response);
-        //response.getWriter().print("Hello from servlet");
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -48,12 +50,10 @@ public class Servlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String path = request.getRequestURI();
-        path = path.replaceAll(".*/coffee/" , "");
         Command command = commands.getOrDefault(path ,
                 (r,s)->"/index.jsp");
         System.out.println(command.getClass().getName());
         String page = command.execute(request, response);
-        //request.getRequestDispatcher(page).forward(request,response);
         if(page.contains("redirect:")){
             response.sendRedirect(page.replace("redirect:", ""));
         }else {

@@ -176,6 +176,33 @@ public class JDBCUserDao implements UserDao, SQLConstants{
     }
 
     @Override
+    public List<User> getAllTeachers() {
+        Map<Long, User> users = new HashMap<>();
+        Map<Long, Course> courses = new HashMap<>();
+        Set<Role> roles = new HashSet<>();
+
+        try (Statement st = connection.createStatement()) {
+            ResultSet rs = st.executeQuery(SQL_FIND_ALL_TEACHERS);
+
+            CourseMapper courseMapper = new CourseMapper();
+            UserMapper userMapper = new UserMapper();
+
+            while (rs.next()) {
+                User user = userMapper
+                        .extractFromResultSet(rs);
+                user = userMapper
+                        .makeUnique(users, user);
+                users.get(user.getId()).getRoles().add((userMapper.roleMap.get(rs.getString(8))));
+
+            }
+            return new ArrayList<>(users.values());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public List<User> findAll() {
         Map<Long, User> users = new HashMap<>();
         Map<Long, Course> courses = new HashMap<>();
