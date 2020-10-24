@@ -1,16 +1,20 @@
 package org.itstep.model.dao.impl;
 
+import org.itstep.model.dao.Pageable;
 import org.itstep.model.dao.UserDao;
+import org.itstep.model.dao.UserPage;
 import org.itstep.model.dao.mapper.CourseMapper;
 import org.itstep.model.dao.mapper.UserMapper;
 import org.itstep.model.entity.Course;
 import org.itstep.model.entity.Role;
 import org.itstep.model.entity.User;
+import sun.jvm.hotspot.debugger.Page;
 
 import java.sql.*;
 import java.util.*;
 
 public class JDBCUserDao implements UserDao, SQLConstants{
+
     private Connection connection;
 
     public JDBCUserDao(Connection connection) {
@@ -198,18 +202,38 @@ public class JDBCUserDao implements UserDao, SQLConstants{
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAll(Pageable pageable) {
         Map<Long, User> users = new HashMap<>();
         Map<Long, Course> courses = new HashMap<>();
         Set<Role> roles = new HashSet<>();
+        int offset = pageable.getPageNumber()*pageable.getItemsPerPage() - pageable.getItemsPerPage();
+        int numberOfRecords = pageable.getItemsPerPage();
+        int numberOfRowsDb = 0;
+        List<Long> ids = new ArrayList<>();
+        UserPage page = new UserPage();
+
+        try(PreparedStatement stForPag = connection.prepareStatement(SQL_USER_FOR_PAGE)){
+            stForPag.setInt(1,offset);
+            stForPag.setInt(2, numberOfRecords);
+            ResultSet rs = stForPag.executeQuery();
+            while (rs.next()){
+                ids.add(rs.getLong(1));
+            }
+            rs = stForPag.executeQuery("SELECT FOUND_ROWS()");
+            if(rs.next())
+                numberOfRowsDb = rs.getInt(1);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
 
         try (Statement st = connection.createStatement()) {
-            ResultSet rs = st.executeQuery(SQL_FIND_ALL_USERS);
+            ResultSet rs = st.executeQuery(SQL_FIND_ALL_USERS_PAG);
 
             CourseMapper courseMapper = new CourseMapper();
             UserMapper userMapper = new UserMapper();
 
-            while (rs.next()) {
+            while (rs.next()&&) {
                 User user = userMapper
                         .extractFromResultSet(rs);
                 user = userMapper

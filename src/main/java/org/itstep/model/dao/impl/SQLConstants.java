@@ -14,7 +14,9 @@ public interface SQLConstants {
 
 //    String SQL_FIND_ALL_USERS = "select u.*, r.*, c.*, t.* from usr u JOIN role r on u.id=r.usr_id JOIN usr_has_course uhc \n" +
 //            "ON u.id=uhc.usr_id JOIN course c ON uhc.course_id=c.id JOIN usr t ON c.usr_id=t.id";
-    String SQL_FIND_ALL_USERS = "select u.*, r.* from usr u LEFT JOIN role r on u.id=r.usr_id";
+//    String SQL_FIND_ALL_USERS = "select u.*, r.* from usr u LEFT JOIN role r on u.id=r.usr_id";
+    String SQL_FIND_ALL_USERS_PAG = "select u.*, r.* from usr u LEFT JOIN role r on u.id=r.usr_id" +
+        "ORDER BY r.usr_id LIMIT ?, ?";
 
     String SQL_UPDATE_USER = "UPDATE usr SET username = ?, usernameukr = ?, email = ?, active = ? WHERE id =?";
     String SQL_DELETE_USER_ROLES = "DELETE FROM role r WHERE r.usr_id =?";
@@ -23,6 +25,7 @@ public interface SQLConstants {
             "and u.usernameukr like ?";
     String SQL_FIND_ALL_TEACHERS = "select u.*, r.role from usr u JOIN role r ON u.id=r.usr_id " +
             "WHERE u.active='1' AND r.role='TEACHER'";
+    String SQL_USER_FOR_PAGE = "select SQL_CALC_FOUND_ROWS id from usr limit ?,?";
 
 
 

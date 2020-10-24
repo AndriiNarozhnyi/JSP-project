@@ -1,6 +1,7 @@
 package org.itstep.model.service;
 
 import org.itstep.model.dao.DaoFactory;
+import org.itstep.model.dao.Pageable;
 import org.itstep.model.dao.UserDao;
 import org.itstep.model.entity.Role;
 import org.itstep.model.entity.User;
@@ -27,10 +28,10 @@ public class UserService {
         return res;
     }
 
-    public List<User> findAllUsers() {
+    public List<User> findAllUsers(Pageable pageable) {
         List<User> users;
         try (UserDao dao = daoFactory.createUserDao()) {
-            users = dao.findAll();
+            users = dao.findAll(pageable);
         }
         return users;
     }

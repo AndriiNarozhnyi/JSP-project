@@ -1,5 +1,6 @@
 package org.itstep.controller.Command;
 
+import org.itstep.model.dao.Pageable;
 import org.itstep.model.entity.User;
 import org.itstep.model.service.UserService;
 
@@ -15,7 +16,8 @@ public class UserListCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        List<User> users = userService.findAllUsers();
+        Pageable pageable = new Pageable();
+        List<User> users = userService.findAllUsers(pageable);
         request.setAttribute("users", users);
 
         return "/admin/userlist.jsp";

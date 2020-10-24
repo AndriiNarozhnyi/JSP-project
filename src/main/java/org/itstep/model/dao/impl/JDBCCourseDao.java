@@ -1,6 +1,7 @@
 package org.itstep.model.dao.impl;
 
 import org.itstep.model.dao.CourseDao;
+import org.itstep.model.dao.Pageable;
 import org.itstep.model.dao.mapper.CourseMapper;
 import org.itstep.model.entity.Course;
 
@@ -76,7 +77,7 @@ public class JDBCCourseDao implements CourseDao {
 
 
     @Override
-    public List<Course> findAll() {
+    public List<Course> findAll(Pageable pageable) {
         return null;
     }
 
