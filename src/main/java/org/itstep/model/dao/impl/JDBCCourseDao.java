@@ -3,11 +3,12 @@ package org.itstep.model.dao.impl;
 import org.itstep.model.dao.CourseDao;
 import org.itstep.model.dao.mapper.CourseMapper;
 import org.itstep.model.entity.Course;
-import org.itstep.model.entity.Role;
 
 import java.sql.*;
 import java.util.List;
 import java.util.Optional;
+
+import static org.itstep.model.dao.impl.SQLConstants.*;
 
 public class JDBCCourseDao implements CourseDao {
     private Connection connection;
@@ -16,33 +17,53 @@ public class JDBCCourseDao implements CourseDao {
     }
 
 
-    public void create(Course entity) {
-        try(PreparedStatement ps = connection.prepareStatement(SQL_CREATE_NEW_COURSE, Statement.RETURN_GENERATED_KEYS)){
-            ps.setString( 1, user.getUsername());
-            ps.setString( 2, user.getUsernameukr());
-            ps.setString( 3, user.getEmail());
-            ps.setString( 4, user.getPassword());
-            ps.setBoolean( 5, user.isActive());
+    public boolean createCourse(Course course) throws SQLException {
+        try{
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+
+                PreparedStatement ps = connection.prepareStatement(SQL_CREATE_NEW_COURSE, Statement.RETURN_GENERATED_KEYS);
+            ps.setString( 1, course.getName());
+            ps.setString( 2, course.getNameukr());
+            ps.setString( 3, course.getTopic());
+            ps.setString( 4, course.getTopicukr());
+            ps.setDate( 5, Date.valueOf(course.getEndDate()));
+            ps.setLong( 6, course.getDuration());
+            ps.setDate( 7, Date.valueOf(course.getStartDate()));
+            ps.setLong( 8, course.getTeacher().getId());
 
             ResultSet rs;
             if (ps.executeUpdate() > 0) {
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
-                    user.setId(((Long) rs.getLong(1)));
+                    course.setId(((Long) rs.getLong(1)));
                 }
             }
-        }catch (Exception ex){
-            throw new RuntimeException(ex);
-        }
-        for (Role role : user.getRoles()){
-            try(PreparedStatement ps = connection.prepareCall(SQL_ADD_ROLE_FOR_USER)){
-                ps.setLong(1, user.getId());
-                ps.setString( 2, role.toString());
-            }catch (Exception ex){
-                throw new RuntimeException(ex);
-            }
-        }
 
+        PreparedStatement psc = connection.prepareStatement(SQL_CHECK_TEACHER);
+                    psc.setLong(1, course.getTeacher().getId());
+                    ResultSet rsc = psc.executeQuery();
+                    int count = 0;
+            while (rsc.next()) {
+                count = rsc.getInt(1);
+            }
+                    if (count == 0) {
+                        PreparedStatement psi = connection.prepareStatement(SQL_SET_TEACHER);
+                        psi.setLong(1, course.getTeacher().getId());
+                        ResultSet rsi = psi.executeQuery();
+                    }
+                    connection.commit();
+
+        }
+        catch (SQLException ex) {
+            // (1) write to log
+            connection.rollback();
+        }
+        return true;
+    }
+
+    @Override
+    public void create(Course entity) {
 
     }
 

@@ -18,7 +18,7 @@ public class CourseService {
 
     public void saveNewCourse(Course course) {
         try (CourseDao dao = daoFactory.createCourseDao()) {
-            dao.create(course);
+            dao.createCourse(course);
         } catch (Exception e){
             e.printStackTrace();
         }

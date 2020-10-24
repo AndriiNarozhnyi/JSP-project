@@ -44,20 +44,21 @@ public class CourseSaveCommand implements Command{
         if(courseService.checkNameDateTeacher(paramMap.get("name"), paramMap.get("startDate"), teacher.getId())){
             request.setAttribute("courAlEx", CommandUtility.setBundle(request).getString("courAlEx"));
             paramMap.forEach(request::setAttribute);
-            return "AdminCourse";
+            return "/admin/CourseCreate.jsp";
         }
+
 
         courseService.saveNewCourse(Course.builder()
                 .name(paramMap.get("name"))
                 .nameukr(paramMap.get("nameukr"))
                 .topic(paramMap.get("topic"))
                 .topicukr(paramMap.get("topicukr"))
-                .startDate(LocalDate.parse(paramMap.get("startDate")).plusDays(1))
+                .startDate(LocalDate.parse(paramMap.get("startDate")))
                 .duration(DAYS.between(LocalDate.parse(paramMap.get("startDate")), LocalDate.parse(paramMap.get("endDate")).plusDays(1)))
                 .endDate(LocalDate.parse(paramMap.get("endDate")))
                 .teacher(teacher)
                 .build());
 
-        return "/admin/CourseCreate.jsp";
+        return "/user/courses.jsp";
     }
 }

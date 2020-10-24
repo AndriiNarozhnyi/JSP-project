@@ -28,7 +28,10 @@ public interface SQLConstants {
 
 
 
-    String SQL_CREATE_NEW_COURSE = ""
+    String SQL_CREATE_NEW_COURSE = "insert into course (name, nameukr, topic, topicukr, end_date, duration, start_date, usr_id)" +
+            "values (?, ?, ?, ?, ?, ?, ?, ?)";
+    String SQL_CHECK_TEACHER = "select count(role) from role where usr_id = ? and role = 'TEACHER'";
+    String SQL_SET_TEACHER = "INSERT INTO role (usr_id, role) values (?, 'TEACHER')";
 
 
 
