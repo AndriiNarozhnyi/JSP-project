@@ -5,6 +5,7 @@
 <%@ page session="true" %>
 <%@ page import="java.util.*, java.text.*" %>
 <%@ page import="org.itstep.model.entity.User" %>
+<%@ page import="org.itstep.model.dao.UserPage" %>
 
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="res"/>
@@ -19,7 +20,7 @@
 <%@ include file="/templates/header1.jsp"%>
 <div class="container">
 <h3><fmt:message key="listUsr" /></h3>
-    <form action="/admin/user/filter" method="get">
+    <form action="/admin/user" method="get">
         <div class="row justify-content-md-left">
             <div class="col col-lg-1">
                 <label><fmt:message key="username" /></label>
@@ -41,6 +42,7 @@
             </div>
         </div>
     </form>
+    <span><%@ include file="/templates/pager.jsp"%></span>
 <table>
     <thead>
     <tr class="text-center">
@@ -48,7 +50,7 @@
     </tr>
     </thead>
     <tbody>
-    <% List<User> users = (List)request.getAttribute("users");%>
+    <% List<User> users = pager.getEntities();%>
     <% if(users.size()==0){%>
     <tr>
         <td colspan="2"><fmt:message key="noUsAv" /></td>

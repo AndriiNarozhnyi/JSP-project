@@ -59,5 +59,6 @@ public class Servlet extends HttpServlet {
         }else {
             request.getRequestDispatcher(page).forward(request, response);
         }
+
     }
 }

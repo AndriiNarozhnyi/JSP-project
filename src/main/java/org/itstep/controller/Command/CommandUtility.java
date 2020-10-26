@@ -1,6 +1,8 @@
 package org.itstep.controller.Command;
 
+import org.itstep.model.dao.Pageable;
 import org.itstep.model.entity.Role;
+import sun.jvm.hotspot.debugger.Page;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -106,5 +108,48 @@ class CommandUtility {
         res.add(check);
         return res;
 
+    }
+
+    public static String makeUrl(String path, Map<String, String> paramMap) {
+        StringBuilder url = new StringBuilder(path);
+        paramMap.remove("page");
+        paramMap.remove("size");
+        Iterator it = paramMap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            char first = ((String)pair.getKey()).charAt(0);
+            if(first=='f'){
+                String key = (String)pair.getKey();
+                if (key.equals("fusername")){
+                    url.append("?");
+                } else {
+                    url.append("&");
+                }
+                url.append(key);
+                url.append("=");
+                url.append(pair.getValue());
+            }
+        }
+        return url.toString();
+    }
+
+    public static Pageable makePageable(Map<String, String> paramMap) {
+        Pageable pageable = new Pageable();
+        if(paramMap.get("size")!=null){
+            pageable.setSize(Integer.parseInt(paramMap.get("size")));
+        }
+        if(paramMap.get("page")!=null){
+            pageable.setPage(Integer.parseInt(paramMap.get("page")));
+        }
+        if(paramMap.get("totRows")!=null&&Integer.parseInt(paramMap.get("totRows"))
+                <pageable.getSize()* pageable.getPage()){
+            int totRows = Integer.parseInt(paramMap.get("totRows"));
+            if (totRows/ pageable.getSize()==0){
+                pageable.setPage(1);
+            } else {
+                pageable.setPage(totRows/ pageable.getSize());
+            }
+        }
+        return pageable;
     }
 }

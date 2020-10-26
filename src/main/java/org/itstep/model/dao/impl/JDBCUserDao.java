@@ -1,5 +1,6 @@
 package org.itstep.model.dao.impl;
 
+import lombok.Builder;
 import org.itstep.model.dao.Pageable;
 import org.itstep.model.dao.UserDao;
 import org.itstep.model.dao.UserPage;
@@ -76,6 +77,11 @@ public class JDBCUserDao implements UserDao, SQLConstants{
         }
     }
 
+    @Override
+    public List<User> findAll(Pageable pageable) {
+        return null;
+    }
+
     public Optional<User> findForLogin (String username){
         Map<Long, User> users = new HashMap<>();
         try(PreparedStatement ps = connection.prepareStatement(SQL_FIND_USER_FOR_LOGIN)){
@@ -146,20 +152,46 @@ public class JDBCUserDao implements UserDao, SQLConstants{
     }
 
     @Override
-    public List<User> findUsersByFilter(String fusername, String fusernameukr) {
+    public UserPage findUsersByFilter(String fusername, String fusernameukr, Pageable pageable) {
         Map<Long, User> users = new HashMap<>();
         Map<Long, Course> courses = new HashMap<>();
         Set<Role> roles = new HashSet<>();
+        int offset = pageable.getPage()*pageable.getSize() - pageable.getSize();
+        int numberOfRecords = pageable.getSize();
+        int numberOfRowsDb = 0;
+        List<Long> ids = new ArrayList<>();
+        UserPage page = new UserPage();
 
-        try (PreparedStatement ps = connection.prepareStatement(SQL_FIND_USERS_BY_FILTER)) {
-            ps.setString(1, "%" + fusername+"%");
-            ps.setString(2, "%" +fusernameukr+"%");
-            ResultSet rs = ps.executeQuery();
+        try(PreparedStatement stForPag = connection.prepareStatement(SQL_USER_FOR_PAGE_FILTER)){
+            stForPag.setString(1,"%" + fusername + "%");
+            stForPag.setString(2,"%" + fusernameukr + "%");
+            stForPag.setInt(3,offset);
+            stForPag.setInt(4, numberOfRecords);
+            ResultSet rs = stForPag.executeQuery();
+            while (rs.next()){
+                ids.add(rs.getLong(1));
+            }
+            rs = stForPag.executeQuery("SELECT FOUND_ROWS()");
+            if(rs.next())
+                numberOfRowsDb = rs.getInt(1);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        if (ids.size()==0){
+            page.setEntities(new ArrayList<>());
+            return page;
+        }
+        String query = Utils.queryBuilder(ids, SQL_USER_TEMPLATE);
+
+        try (Statement ps = connection.createStatement()) {
+
+            ResultSet rs = ps.executeQuery(query);
 
             CourseMapper courseMapper = new CourseMapper();
             UserMapper userMapper = new UserMapper();
 
-            while (rs.next()) {
+            while (rs.next()){
                 User user = userMapper
                         .extractFromResultSet(rs);
                 user = userMapper
@@ -167,11 +199,17 @@ public class JDBCUserDao implements UserDao, SQLConstants{
                 users.get(user.getId()).getRoles().add((userMapper.roleMap.get(rs.getString(8))));
 
             }
-            return new ArrayList<>(users.values());
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
+        page.setPageNumber(pageable.getPage());
+        page.setTotalPages(numberOfRowsDb%numberOfRecords==0
+                ?numberOfRowsDb/numberOfRecords:numberOfRowsDb/numberOfRecords+1);
+        page.setSize(pageable.getSize());
+        page.setEntities(new ArrayList<>(users.values()));
+        page.setTotalRows(numberOfRowsDb);
+        return page;
     }
 
     @Override
@@ -201,13 +239,12 @@ public class JDBCUserDao implements UserDao, SQLConstants{
         }
     }
 
-    @Override
-    public List<User> findAll(Pageable pageable) {
+    public UserPage findAllPageable(Pageable pageable) {
         Map<Long, User> users = new HashMap<>();
         Map<Long, Course> courses = new HashMap<>();
         Set<Role> roles = new HashSet<>();
-        int offset = pageable.getPageNumber()*pageable.getItemsPerPage() - pageable.getItemsPerPage();
-        int numberOfRecords = pageable.getItemsPerPage();
+        int offset = pageable.getPage()*pageable.getSize() - pageable.getSize();
+        int numberOfRecords = pageable.getSize();
         int numberOfRowsDb = 0;
         List<Long> ids = new ArrayList<>();
         UserPage page = new UserPage();
@@ -226,14 +263,16 @@ public class JDBCUserDao implements UserDao, SQLConstants{
         } catch (SQLException e){
             e.printStackTrace();
         }
+        String query = Utils.queryBuilder(ids, SQL_USER_TEMPLATE);
 
-        try (Statement st = connection.createStatement()) {
-            ResultSet rs = st.executeQuery(SQL_FIND_ALL_USERS_PAG);
+        try (Statement ps = connection.createStatement()) {
+
+            ResultSet rs = ps.executeQuery(query);
 
             CourseMapper courseMapper = new CourseMapper();
             UserMapper userMapper = new UserMapper();
 
-            while (rs.next()&&) {
+            while (rs.next()){
                 User user = userMapper
                         .extractFromResultSet(rs);
                 user = userMapper
@@ -241,11 +280,17 @@ public class JDBCUserDao implements UserDao, SQLConstants{
                     users.get(user.getId()).getRoles().add((userMapper.roleMap.get(rs.getString(8))));
 
             }
-            return new ArrayList<>(users.values());
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
+        page.setPageNumber(pageable.getPage());
+        page.setTotalPages(numberOfRowsDb%numberOfRecords==0
+                ?numberOfRowsDb/numberOfRecords:numberOfRowsDb/numberOfRecords+1);
+        page.setSize(pageable.getSize());
+        page.setEntities(new ArrayList<>(users.values()));
+        page.setTotalRows(numberOfRowsDb);
+        return page;
     }
 
     @Override

@@ -3,6 +3,7 @@ package org.itstep.model.service;
 import org.itstep.model.dao.DaoFactory;
 import org.itstep.model.dao.Pageable;
 import org.itstep.model.dao.UserDao;
+import org.itstep.model.dao.UserPage;
 import org.itstep.model.entity.Role;
 import org.itstep.model.entity.User;
 
@@ -28,12 +29,12 @@ public class UserService {
         return res;
     }
 
-    public List<User> findAllUsers(Pageable pageable) {
-        List<User> users;
+    public UserPage findAllUsers(Pageable pageable) {
+        UserPage page;
         try (UserDao dao = daoFactory.createUserDao()) {
-            users = dao.findAll(pageable);
+            page = dao.findAllPageable(pageable);
         }
-        return users;
+        return page;
     }
 
     public Optional<User> findById(Long userId) {
@@ -52,12 +53,12 @@ public class UserService {
         return res;
     }
 
-    public List<User> findUsersByFilter(String fusername, String fusernameukr) {
-        List<User> users;
+    public UserPage findUsersByFilter(String fusername, String fusernameukr, Pageable pageable) {
+        UserPage page = new UserPage();
         try (UserDao dao = daoFactory.createUserDao()) {
-            users = dao.findUsersByFilter(fusername, fusernameukr);
+            page = dao.findUsersByFilter(fusername, fusernameukr, pageable);
         }
-        return users;
+        return page;
     }
 
     public List<User> getAllTeachers() {

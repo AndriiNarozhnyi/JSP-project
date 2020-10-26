@@ -18,10 +18,10 @@ public class UserFilterCommand implements Command{
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String fusername = request.getParameter("fusername");
         String fusernameukr = request.getParameter("fusernameukr");
-        List<User> users = userService.findUsersByFilter(fusername, fusernameukr);
-        request.setAttribute("fusername", fusername);
-        request.setAttribute("fusernameukr", fusernameukr);
-        request.setAttribute("users", users);
+//        List<User> users = userService.findUsersByFilter(fusername, fusernameukr);
+//        request.setAttribute("fusername", fusername);
+//        request.setAttribute("fusernameukr", fusernameukr);
+//        request.setAttribute("users", users);
         return "/admin/userlist.jsp";
     }
 }

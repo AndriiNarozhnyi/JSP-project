@@ -10,6 +10,8 @@ import java.util.Set;
 public interface UserDao extends GenericDao<User>{
     Optional<User> findForLogin(String username);
     boolean saveEditedUser(User user);
-    List<User> findUsersByFilter(String fusername, String fusernameukr);
+    UserPage findUsersByFilter(String fusername, String fusernameukr, Pageable pageable);
     List<User> getAllTeachers();
+
+    UserPage findAllPageable(Pageable pageable);
 }
