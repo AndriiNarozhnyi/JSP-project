@@ -30,6 +30,7 @@ org\itstep\controller\Command\LogOutCommand.class
 org\itstep\model\dao\impl\JDBCUserDao.class
 org\itstep\model\entity\User.class
 org\itstep\controller\Command\CourseCreateCommand.class
+org\itstep\model\dao\CoursePage.class
 org\itstep\controller\Command\RegistrationCommand.class
 org\itstep\model\dao\impl\JDBCCourseDao.class
 org\itstep\model\dao\mapper\CourseMapper.class

@@ -2,9 +2,7 @@ package org.itstep.controller.Command;
 
 import org.itstep.model.dao.Pageable;
 import org.itstep.model.entity.Role;
-import sun.jvm.hotspot.debugger.Page;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -110,8 +108,10 @@ class CommandUtility {
 
     }
 
-    public static String makeUrl(String path, Map<String, String> paramMap) {
+    public static List<Object> makeUrlAndCheckFilter(String path, Map<String, String> paramMap) {
+        List<Object> res = new ArrayList<>();
         StringBuilder url = new StringBuilder(path);
+        boolean filterOff = true;
         paramMap.remove("page");
         paramMap.remove("size");
         Iterator it = paramMap.entrySet().iterator();
@@ -120,7 +120,7 @@ class CommandUtility {
             char first = ((String)pair.getKey()).charAt(0);
             if(first=='f'){
                 String key = (String)pair.getKey();
-                if (key.equals("fusername")){
+                if (key.equals("fusername")||key.equals("fname")){
                     url.append("?");
                 } else {
                     url.append("&");
@@ -128,9 +128,14 @@ class CommandUtility {
                 url.append(key);
                 url.append("=");
                 url.append(pair.getValue());
+                if ((String)pair.getValue()!=null&&(String)pair.getValue()!=""){
+                    filterOff = false;
+                }
             }
         }
-        return url.toString();
+        res.add(url.toString());
+        res.add(filterOff);
+        return res;
     }
 
     public static Pageable makePageable(Map<String, String> paramMap) {

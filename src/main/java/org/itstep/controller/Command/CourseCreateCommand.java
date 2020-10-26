@@ -1,7 +1,6 @@
 package org.itstep.controller.Command;
 
 import org.itstep.model.entity.User;
-import org.itstep.model.service.CourseService;
 import org.itstep.model.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;

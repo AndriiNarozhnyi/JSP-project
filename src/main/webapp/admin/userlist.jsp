@@ -42,7 +42,7 @@
             </div>
         </div>
     </form>
-    <span><%@ include file="/templates/pager.jsp"%></span>
+    <span><%@ include file="/templates/pagerU.jsp"%></span>
 <table>
     <thead>
     <tr class="text-center">

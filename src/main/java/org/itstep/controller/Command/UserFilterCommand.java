@@ -1,11 +1,9 @@
 package org.itstep.controller.Command;
 
-import org.itstep.model.entity.User;
 import org.itstep.model.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 public class UserFilterCommand implements Command{
     private UserService userService;

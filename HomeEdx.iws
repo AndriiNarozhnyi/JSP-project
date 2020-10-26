@@ -13,26 +13,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a2ccef0-02f4-4c0f-bb84-0c342fe63f21" name="Default" comment="Try 12 course create done + teacher check">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/templates/pager.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/user/courses.jsp" afterDir="false" />
+    <list default="true" id="9a2ccef0-02f4-4c0f-bb84-0c342fe63f21" name="Default" comment="Try 13 pagination + filter done">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CourseListCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/CoursePage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/templates/pagerU.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HomeEdx.iws" beforeDir="false" afterPath="$PROJECT_DIR$/HomeEdx.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CourseCreateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CourseCreateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CourseSaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CourseSaveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/UserEditCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/UserEditCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/UserFilterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/UserFilterCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/UserListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/UserListCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Servlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/Pageable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/Pageable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/UserPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/UserPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/JDBCUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/JDBCUserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/SQLConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/SQLConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/res_uk.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/res_uk.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin/userlist.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin/userlist.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/CommandUtility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/CommandUtility.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Servlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/model/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/pager.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/pagerC.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/user/courses.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user/courses.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
@@ -74,11 +69,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="LombokPluginEnabledInProject" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/user" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/templates" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -91,16 +87,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\resources" />
-      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp\WEB-INF" />
-      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp\WEB-INF\lib" />
-      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp" />
-      <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.itstep.controller.Command" />
+      <recent name="org.itstep.model.entity.enums" />
+      <recent name="org.itstep.model.entity.enum" />
+      <recent name="org.itstep.model.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp\user" />
       <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp\templates" />
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp\user" />
       <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp\admin" />
       <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\resources" />
       <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao" />
@@ -109,11 +104,12 @@
       <recent name="org.itstep.model.dao" />
       <recent name="org.itstep.model.service" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="org.itstep.controller.Command" />
-      <recent name="org.itstep.model.entity.enums" />
-      <recent name="org.itstep.model.entity.enum" />
-      <recent name="org.itstep.model.entity" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\resources" />
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp\WEB-INF" />
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp\WEB-INF\lib" />
+      <recent name="D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\webapp" />
+      <recent name="D:\CoffeeMachine3\CoffeeMachine\src\main\webapp" />
     </key>
   </component>
   <component name="RunManager">
@@ -129,13 +125,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -233,7 +231,8 @@
       <workItem from="1603515269617" duration="11642000" />
       <workItem from="1603535228640" duration="7600000" />
       <workItem from="1603560174249" duration="20480000" />
-      <workItem from="1603663951110" duration="11132000" />
+      <workItem from="1603663951110" duration="11211000" />
+      <workItem from="1603726438117" duration="7353000" />
     </task>
     <task id="LOCAL-00001" summary="Try 1 start from CoffeeMachine">
       <created>1602951654571</created>
@@ -319,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603534207744</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Try 13 pagination + filter done">
+      <created>1603721971302</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1603721971302</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">
@@ -362,7 +368,8 @@
     <MESSAGE value="Try 10 Userlist + UserEdit" />
     <MESSAGE value="Try 11 course create" />
     <MESSAGE value="Try 12 course create done + teacher check" />
-    <option name="LAST_COMMIT_MESSAGE" value="Try 12 course create done + teacher check" />
+    <MESSAGE value="Try 13 pagination + filter done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Try 13 pagination + filter done" />
   </component>
   <component name="WindowStateProjectService">
     <state x="163" y="0" key="#Project_Structure" timestamp="1603361149424">
@@ -377,55 +384,55 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1603348552330" />
-    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1603567559303">
+    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1603741550879">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1603567559303" />
+    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1603741550879" />
     <state x="466" y="258" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1602951135100">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="466" y="258" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1602951135100" />
-    <state x="488" y="148" key="FileChooserDialogImpl" timestamp="1603529521003">
+    <state x="488" y="148" key="FileChooserDialogImpl" timestamp="1603726486766">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="148" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1603529521003" />
+    <state x="488" y="148" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1603726486766" />
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601657008039" />
-    <state width="1323" height="146" key="GridCell.Tab.0.bottom" timestamp="1603721435574">
+    <state width="1323" height="146" key="GridCell.Tab.0.bottom" timestamp="1603741034517">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603721435574" />
+    <state width="1323" height="146" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603741034517" />
     <state width="1493" height="212" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601657009563" />
-    <state width="1323" height="146" key="GridCell.Tab.0.center" timestamp="1603721435574">
+    <state width="1323" height="146" key="GridCell.Tab.0.center" timestamp="1603741034517">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603721435574" />
+    <state width="1323" height="146" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603741034517" />
     <state width="1493" height="212" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601657009563" />
-    <state width="1323" height="146" key="GridCell.Tab.0.left" timestamp="1603721435574">
+    <state width="1323" height="146" key="GridCell.Tab.0.left" timestamp="1603741034517">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603721435574" />
+    <state width="1323" height="146" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603741034517" />
     <state width="1493" height="212" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601657009562" />
-    <state width="1323" height="146" key="GridCell.Tab.0.right" timestamp="1603721435574">
+    <state width="1323" height="146" key="GridCell.Tab.0.right" timestamp="1603741034517">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603721435574" />
+    <state width="1323" height="146" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603741034517" />
     <state width="1493" height="212" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601657009563" />
-    <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1603697036558">
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1603722003725">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603697036558" />
-    <state width="1323" height="223" key="GridCell.Tab.1.center" timestamp="1603697036558">
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603722003725" />
+    <state width="1323" height="223" key="GridCell.Tab.1.center" timestamp="1603722003724">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1603697036558" />
-    <state width="1323" height="223" key="GridCell.Tab.1.left" timestamp="1603697036558">
+    <state width="1323" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1603722003724" />
+    <state width="1323" height="223" key="GridCell.Tab.1.left" timestamp="1603722003724">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1603697036558" />
-    <state width="1323" height="223" key="GridCell.Tab.1.right" timestamp="1603697036558">
+    <state width="1323" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1603722003724" />
+    <state width="1323" height="223" key="GridCell.Tab.1.right" timestamp="1603722003725">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1603697036558" />
+    <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1603722003725" />
     <state width="1323" height="180" key="GridCell.Tab.2.bottom" timestamp="1603348438790">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -494,10 +501,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1603366644199" />
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1603534240160">
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1603721979562">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1603534240160" />
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1603721979562" />
     <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603359028006">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -508,80 +515,6 @@
     <state x="383" y="121" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1603540369361" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>136</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>137</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>138</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>139</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>140</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>141</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>142</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>144</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>143</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>145</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>146</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>147</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>149</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/CommandUtility.java</url>
-          <line>152</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="MavenRunConfiguration">
         <watch expression="((PropertyChangeSupport)this.support).map" custom="javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,java.beans.PropertyChangeSupport" />

@@ -2,12 +2,10 @@ package org.itstep.controller.Command;
 
 import org.itstep.model.dao.Pageable;
 import org.itstep.model.dao.UserPage;
-import org.itstep.model.entity.User;
 import org.itstep.model.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Map;
 
 public class UserListCommand implements Command{
@@ -21,7 +19,7 @@ public class UserListCommand implements Command{
         String path = "/admin/user";
         Map<String, String> paramMap = CommandUtility.refactorParamMap(request.getParameterMap());
         Pageable pageable = CommandUtility.makePageable(paramMap);
-        String url = CommandUtility.makeUrl(path, paramMap);
+        String url = (String) CommandUtility.makeUrlAndCheckFilter(path, paramMap).get(0);
 
         UserPage page = new UserPage();
 

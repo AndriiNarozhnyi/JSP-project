@@ -5,11 +5,13 @@
 <%@ page import="java.util.*, java.text.*" %>
 <%@ page import="org.itstep.model.entity.Role" %>
 <%@ page import="org.itstep.model.dao.UserPage" %>
+<%@ page import="org.itstep.model.dao.CoursePage" %>
 
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="res"/>
 <fmt:setLocale value="${param.lang}"/>
-<% UserPage pager = (UserPage)request.getAttribute("page");%>
+<%CoursePage pager = (CoursePage) request.getAttribute("page");%>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
