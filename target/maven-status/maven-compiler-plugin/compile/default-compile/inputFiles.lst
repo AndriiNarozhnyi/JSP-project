@@ -11,6 +11,7 @@ D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\impl\JD
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\CourseSaveCommand.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\impl\Utils.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Servlet.java
+D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\UserUnenrollCommand.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\CoursePage.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\DaoFactory.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\mapper\UserMapper.java
@@ -28,6 +29,7 @@ D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\impl\SQ
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\UserSaveCommand.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\filters\EncodingFilter.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\UserListCommand.java
+D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\UserEnrollCommand.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\mapper\CourseMapper.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\UserPage.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\filters\SessionLocaleFilter.java

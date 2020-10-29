@@ -24,6 +24,7 @@ org\itstep\controller\filters\AuthFilter.class
 org\itstep\model\dao\impl\Utils.class
 org\itstep\model\dao\Pageable.class
 org\itstep\controller\Command\UserFilterCommand.class
+org\itstep\controller\Command\UserEnrollCommand.class
 org\itstep\model\dao\UserDao.class
 org\itstep\model\dao\impl\ConnectionPoolHolder.class
 org\itstep\controller\Command\CourseSaveCommand.class
@@ -34,6 +35,7 @@ org\itstep\controller\Command\CourseCreateCommand.class
 org\itstep\model\dao\CoursePage.class
 org\itstep\controller\Command\RegistrationCommand.class
 org\itstep\model\dao\impl\JDBCCourseDao.class
+org\itstep\controller\Command\UserUnenrollCommand.class
 org\itstep\model\dao\mapper\CourseMapper.class
 org\itstep\model\dao\GenericDao.class
 org\itstep\controller\Command\CommandUtility.class

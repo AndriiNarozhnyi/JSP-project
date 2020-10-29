@@ -39,4 +39,20 @@ public class CourseService {
         return page;
 
     }
+
+    public void enrollUser(Long courseId, Long userId) {
+        try (CourseDao dao = daoFactory.createCourseDao()) {
+            dao.enrollUser(courseId, userId);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void unenrollUser(long courseId, Long userId) {
+        try (CourseDao dao = daoFactory.createCourseDao()) {
+            dao.unenrollUser(courseId, userId);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

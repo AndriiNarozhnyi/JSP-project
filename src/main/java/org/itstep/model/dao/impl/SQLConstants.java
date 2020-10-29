@@ -45,6 +45,8 @@ public interface SQLConstants {
             "ON c.id = uhc.course_id join usr u ON c.usr_id = u.id where c.name like ? " +
             "and c.nameukr like ? and topic like ? and topicukr like ? and start_date > ? and duration >= ? " +
             "and duration <= ? and end_date <? and u.username like ? limit ?,?";
+    String SQL_ENROLL_USER = "INSERT INTO usr_has_course (usr_id, course_id) values (?, ?)";
+    String SQL_UNENROLL_USER = "delete from usr_has_course where usr_id =? and course_id=?";
 
 
 

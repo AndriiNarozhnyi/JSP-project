@@ -35,6 +35,9 @@ public class Servlet extends HttpServlet {
         commands.put("/admin/create", new CourseCreateCommand(new UserService()));
         commands.put("/admin/save", new CourseSaveCommand(new UserService(), new CourseService()));
         commands.put("/user/courses", new CourseListCommand(new CourseService()));
+        commands.put("/user/enroll", new UserEnrollCommand(new CourseService()));
+        commands.put("/user/unenroll", new UserUnenrollCommand(new CourseService()));
+        commands.put("/admin/edit", new CourseEditCommand(new CourseService(), new UserService()));
     }
 
     public void doGet(HttpServletRequest request,

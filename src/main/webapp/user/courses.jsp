@@ -96,32 +96,39 @@
         <td class="text-center"><span><% out.print(course.getEndDate().format(formatter));%></span></td>
         <td class="text-center"><span><% out.print(course.getTeacher().getUsername());%></span></td>
         <td class="text-center"><span><% out.print(course.getEnrolledStudents().size());%></span></td>
-        <% if(course.isNotStarted()){%>
+        <% if(course.isNotStarted()&&session.getAttribute("role")==Role.USER){%>
         <td>
             <% if(!course.getEnrolledStudents().contains(session.getAttribute("userId"))){%>
-                <form action="/courses/enroll" method="post">
+                <form action="/user/enroll" method="post">
                     <input type="hidden" name="courseId" value="<%=course.getId()%>">
+                    <input type="hidden" name="path" value=<%=request.getAttribute("filterLink")%>>
 <%--                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />--%>
-                    <button class="btn btn-success" type="submit"><fmt:message key="enroll" /></button>
+                    <button class="btn btn-success btn-xs" type="submit"><fmt:message key="enroll" /></button>
                 </form>
             <%}%>
         </td>
         <td>
             <% if(course.getEnrolledStudents().contains(session.getAttribute("userId"))){%>
-            <form action="/courses/unenroll" method="post">
-                <input type="hidden" name="courseId" value="<%=course.getId()%>">
+            <form action="/user/unenroll" method="post">
+                <input type="hidden" name="courseId" value=<%=course.getId()%>>
+                <input type="hidden" name="path" value=<%=request.getAttribute("filterLink")%>>
                 <%--                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />--%>
-                <button class="btn btn-success" type="submit"><fmt:message key="unenroll" /></button>
+                <button class="btn btn-warning btn-xs" type="submit"><fmt:message key="unenroll" /></button>
             </form>
             <%}%>
         </td>
+        </td>
         <%}%>
-
-<%--        <td th:if="${#request.userPrincipal.principal.isAdmin()}">--%>
-<%--            <div th:if="${!course.isFinished()}">--%>
-<%--            <a class="btn btn-dark mx-2" th:href="@{/adminupdate/{id}(id=${course.id})}" th:text="#{edit}">Edit</a>--%>
-<%--            </div>--%>
-<%--        </td>--%>
+        <td>
+            <% if(session.getAttribute("role")==Role.ADMIN&&(!course.isFinished())){%>
+            <form action="/admin/edit" method="post">
+                <input type="hidden" name="courseId" value=<%=course.getId()%>>
+                <input type="hidden" name="path" value=<%=request.getAttribute("filterLink")%>>
+                <%--                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />--%>
+            <button class="btn btn-dark mx-2" type="submit"><fmt:message key="edit" /></button>
+            </form>
+            <%}%>
+        </td>
 <%--        <td th:if="${#request.userPrincipal.principal.isAdmin()}">--%>
 <%--            <div th:if="${course.isNotStarted()}">--%>
 <%--                <form th:action="@{/adminupdate/delete/{id}(id=${course.id})}" method="post">--%>

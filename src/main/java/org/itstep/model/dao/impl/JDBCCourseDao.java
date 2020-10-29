@@ -112,6 +112,40 @@ public class JDBCCourseDao implements CourseDao {
         return findByFilter (pageable, paramMap, queryMade);
     }
 
+    @Override
+    public void enrollUser(Long courseId, Long userId) {
+        try(PreparedStatement ps = connection.prepareStatement(SQL_ENROLL_USER)){
+            ps.setLong(1,userId);
+            ps.setLong(2, courseId);
+
+            if (ps.executeUpdate() > 0) {
+                return;
+            } else {
+                throw new RuntimeException("Enrollment was not done correctly");
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void unenrollUser(long courseId, Long userId) {
+        try(PreparedStatement ps = connection.prepareStatement(SQL_UNENROLL_USER)){
+            ps.setLong(1,userId);
+            ps.setLong(2, courseId);
+
+            if (ps.executeUpdate() > 0) {
+                return;
+            } else {
+                throw new RuntimeException("Unenrollment was not done correctly");
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     private CoursePage findByFilter(Pageable pageable, Map<String, String> paramMap, String queryMade) {
         Map<Long, Course> courses = new HashMap<>();
         CoursePage page = new CoursePage();

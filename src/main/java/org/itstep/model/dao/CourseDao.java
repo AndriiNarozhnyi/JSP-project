@@ -12,4 +12,8 @@ public interface CourseDao extends GenericDao<Course>{
     CoursePage findAllPageable(Pageable pageable);
 
     CoursePage findByFilterDispatcher(Pageable pageable, Map<String, String> paramMap, String menu, Long userId);
+
+    void enrollUser(Long courseId, Long userId);
+
+    void unenrollUser(long courseId, Long userId);
 }
