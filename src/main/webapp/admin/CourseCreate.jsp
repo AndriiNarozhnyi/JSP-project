@@ -99,7 +99,7 @@
                 </div><%}%>
             </div>
             <div class="row justify-content-md-left">
-                <div class="col col-lg-3">
+                <div class="col col-lg-2">
                     <Label><fmt:message key="selectTeacher" /></Label>
                 </div>
                 <div class="col col-lg-2">

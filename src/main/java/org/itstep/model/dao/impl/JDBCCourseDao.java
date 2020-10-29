@@ -1,13 +1,20 @@
 package org.itstep.model.dao.impl;
 
 import org.itstep.model.dao.CourseDao;
+import org.itstep.model.dao.CoursePage;
 import org.itstep.model.dao.Pageable;
+import org.itstep.model.dao.UserPage;
 import org.itstep.model.dao.mapper.CourseMapper;
+import org.itstep.model.dao.mapper.UserMapper;
 import org.itstep.model.entity.Course;
+import org.itstep.model.entity.Role;
+import org.itstep.model.entity.User;
 
 import java.sql.*;
-import java.util.List;
-import java.util.Optional;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.itstep.model.dao.impl.SQLConstants.*;
 
@@ -64,6 +71,125 @@ public class JDBCCourseDao implements CourseDao {
     }
 
     @Override
+    public CoursePage findAllPageable(Pageable pageable) {
+        Map<Long, User> users = new HashMap<>();
+        Map<Long, Course> courses = new HashMap<>();
+        int offset = pageable.getPage()*pageable.getSize() - pageable.getSize();
+        int numberOfRecords = pageable.getSize();
+        int numberOfRowsDb = 0;
+        pageable.setSort("c.start_date");
+        List<Long> ids = new ArrayList<>();
+        CoursePage page = new CoursePage();
+
+        try(PreparedStatement stForPag = connection.prepareStatement(SQL_COURSE_FOR_PAGE)){
+            stForPag.setInt(1,offset);
+            stForPag.setInt(2, numberOfRecords);
+            ResultSet rs = stForPag.executeQuery();
+            while (rs.next()){
+                ids.add(rs.getLong(1));
+            }
+            rs = stForPag.executeQuery("SELECT FOUND_ROWS()");
+            if(rs.next())
+                numberOfRowsDb = rs.getInt(1);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        String query = Utils.queryBuilder(ids, SQL_COURSE_TEMPLATE, pageable);
+        page.setEntities((List<Course>) getDataBaseRows(courses, query));
+        page.setPageNumber(pageable.getPage());
+        page.setTotalPages(numberOfRowsDb%numberOfRecords==0
+                ?numberOfRowsDb/numberOfRecords:numberOfRowsDb/numberOfRecords+1);
+        page.setSize(pageable.getSize());
+        page.setTotalRows(numberOfRowsDb);
+        return page;
+    }
+
+    @Override
+    public CoursePage findByFilterDispatcher(Pageable pageable, Map<String, String> paramMap, String menu, Long userId) {
+        String queryMade = "";
+
+        return findByFilter (pageable, paramMap, queryMade);
+    }
+
+    private CoursePage findByFilter(Pageable pageable, Map<String, String> paramMap, String queryMade) {
+        Map<Long, Course> courses = new HashMap<>();
+        CoursePage page = new CoursePage();
+        int offset = pageable.getPage()*pageable.getSize() - pageable.getSize();
+        int numberOfRecords = pageable.getSize();
+        pageable.setSort("c.start_date");
+        List<Object> res = getIdsForFilter(offset, numberOfRecords, queryMade, paramMap);
+        List<Long> ids = (List<Long>) res.get(0);
+        int numberOfRowsDb = (int) res.get(1);
+
+        String query = Utils.queryBuilder(ids, SQL_COURSE_TEMPLATE, pageable);
+        page.setEntities((List<Course>) getDataBaseRows(courses, query));
+        page.setPageNumber(pageable.getPage());
+        page.setTotalPages(numberOfRowsDb%numberOfRecords==0
+                ?numberOfRowsDb/numberOfRecords:numberOfRowsDb/numberOfRecords+1);
+        page.setSize(pageable.getSize());
+        page.setTotalRows(numberOfRowsDb);
+        return page;
+    }
+    private List<Object> getIdsForFilter(int offset, int numberOfRecords, String queryMade,
+                                         Map<String, String> paramMap){
+        List<Object> res = new ArrayList<>();
+        Set<Long> ids = new HashSet<>();
+        int numberOfRowsDb = 0;
+        try(PreparedStatement stForPag = connection.prepareStatement(SQL_COURSE_FILTER)){
+            stForPag.setString(1,"%"+paramMap.get("fname")+"%");
+            stForPag.setString(2,"%"+paramMap.get("fnameukr")+"%");
+            stForPag.setString(3,"%"+paramMap.get("ftopic")+"%");
+            stForPag.setString(4,"%"+paramMap.get("ftopicukr")+"%");
+            stForPag.setDate(5, Date.valueOf(LocalDate.parse(paramMap.get("fstartDate")==""
+                    ?"0002-02-02":paramMap.get("fstartDate"))));
+            stForPag.setInt(6, Integer.parseInt(paramMap.get("fdurationMin")==""?"0":paramMap.get("fdurationMin")));
+            stForPag.setInt(7, Integer.parseInt(paramMap.get("fdurationMax")==""?"9999":paramMap.get("fdurationMax")));
+            stForPag.setDate(8, Date.valueOf(LocalDate.parse(paramMap.get("fendDate")==""
+                    ?"9999-02-02":paramMap.get("fendDate"))));
+            stForPag.setString(9, "%" + paramMap.get("fteacher")+"%");
+
+            stForPag.setInt(10,offset);
+            stForPag.setInt(11, numberOfRecords);
+            ResultSet rs = stForPag.executeQuery();
+            while (rs.next()){
+                ids.add(rs.getLong(1));
+            }
+            rs = stForPag.executeQuery("SELECT FOUND_ROWS()");
+            if(rs.next())
+                numberOfRowsDb = rs.getInt(1);
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        res.add(new ArrayList<>(ids));
+        res.add(numberOfRowsDb);
+        return res;
+    }
+
+    private Object getDataBaseRows(Map<Long, Course> courses, String query) {
+        try (Statement ps = connection.createStatement()) {
+        ResultSet rs = ps.executeQuery(query);
+
+        CourseMapper courseMapper = new CourseMapper();
+        UserMapper userMapper = new UserMapper();
+
+        while (rs.next()) {
+            Course course = courseMapper.extractFromResultSet(rs);
+            course = courseMapper.makeUnique(courses, course);
+            User teacher = userMapper.extractFromResultSetC(rs);
+            courses.get(course.getId()).setTeacher(teacher);
+            if (rs.getLong(10)!=0) {
+                courses.get(course.getId()).getEnrolledStudents().add(rs.getLong(10));
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+        return new ArrayList<>(courses.values());
+    }
+
+    @Override
     public void create(Course entity) {
 
     }
@@ -117,6 +243,7 @@ public class JDBCCourseDao implements CourseDao {
 
     @Override
     public boolean checkNameDateTeacher(String name, String startDate, Long id) {
+        //todo finish method;
         return false;
     }
 }

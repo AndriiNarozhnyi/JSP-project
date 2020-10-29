@@ -27,7 +27,7 @@
                 </li>
                 <% if(request.getSession().getAttribute("role")!=null&&request.getSession().getAttribute("role")!= Role.UNKNOWN){%>
                     <li class="nav-item">
-                        <a class="nav-link" href="/courses"><fmt:message key="Courses" /></a>
+                        <a class="nav-link" href="/user/courses"><fmt:message key="Courses" /></a>
                     </li>
                 <%}%>
                     <% if(request.getSession().getAttribute("role")!=null&&request.getSession().getAttribute("role")!= Role.UNKNOWN){%>

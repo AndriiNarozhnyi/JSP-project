@@ -15,6 +15,7 @@ org\itstep\model\entity\Role.class
 org\itstep\model\dao\DaoFactory.class
 org\itstep\controller\Command\UserEditCommand.class
 org\itstep\model\dao\UserPage.class
+org\itstep\controller\Command\CourseListCommand.class
 org\itstep\controller\Command\UserListCommand.class
 org\itstep\controller\Command\Command.class
 org\itstep\controller\Command\ExceptionCommand.class

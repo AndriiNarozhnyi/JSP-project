@@ -182,8 +182,18 @@ public class JDBCUserDao implements UserDao, SQLConstants{
             page.setEntities(new ArrayList<>());
             return page;
         }
-        String query = Utils.queryBuilder(ids, SQL_USER_TEMPLATE);
+        String query = Utils.queryBuilder(ids, SQL_USER_TEMPLATE, pageable);
 
+        page.setEntities(new ArrayList<>(getDataBaseRows(users, query)));
+        page.setPageNumber(pageable.getPage());
+        page.setTotalPages(numberOfRowsDb%numberOfRecords==0
+                ?numberOfRowsDb/numberOfRecords:numberOfRowsDb/numberOfRecords+1);
+        page.setSize(pageable.getSize());
+        page.setTotalRows(numberOfRowsDb);
+        return page;
+    }
+
+    private List<User> getDataBaseRows(Map<Long, User> users, String query) {
         try (Statement ps = connection.createStatement()) {
 
             ResultSet rs = ps.executeQuery(query);
@@ -191,7 +201,7 @@ public class JDBCUserDao implements UserDao, SQLConstants{
             CourseMapper courseMapper = new CourseMapper();
             UserMapper userMapper = new UserMapper();
 
-            while (rs.next()){
+            while (rs.next()) {
                 User user = userMapper
                         .extractFromResultSet(rs);
                 user = userMapper
@@ -201,15 +211,8 @@ public class JDBCUserDao implements UserDao, SQLConstants{
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
-        page.setPageNumber(pageable.getPage());
-        page.setTotalPages(numberOfRowsDb%numberOfRecords==0
-                ?numberOfRowsDb/numberOfRecords:numberOfRowsDb/numberOfRecords+1);
-        page.setSize(pageable.getSize());
-        page.setEntities(new ArrayList<>(users.values()));
-        page.setTotalRows(numberOfRowsDb);
-        return page;
+        return new ArrayList<>(users.values());
     }
 
     @Override
@@ -263,32 +266,12 @@ public class JDBCUserDao implements UserDao, SQLConstants{
         } catch (SQLException e){
             e.printStackTrace();
         }
-        String query = Utils.queryBuilder(ids, SQL_USER_TEMPLATE);
-
-        try (Statement ps = connection.createStatement()) {
-
-            ResultSet rs = ps.executeQuery(query);
-
-            CourseMapper courseMapper = new CourseMapper();
-            UserMapper userMapper = new UserMapper();
-
-            while (rs.next()){
-                User user = userMapper
-                        .extractFromResultSet(rs);
-                user = userMapper
-                        .makeUnique(users, user);
-                    users.get(user.getId()).getRoles().add((userMapper.roleMap.get(rs.getString(8))));
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
+        String query = Utils.queryBuilder(ids, SQL_USER_TEMPLATE, pageable);
+        page.setEntities(new ArrayList<>(getDataBaseRows(users, query)));
         page.setPageNumber(pageable.getPage());
         page.setTotalPages(numberOfRowsDb%numberOfRecords==0
                 ?numberOfRowsDb/numberOfRecords:numberOfRowsDb/numberOfRecords+1);
         page.setSize(pageable.getSize());
-        page.setEntities(new ArrayList<>(users.values()));
         page.setTotalRows(numberOfRowsDb);
         return page;
     }

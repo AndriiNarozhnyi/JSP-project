@@ -23,17 +23,22 @@ public class CourseListCommand implements Command{
         Pageable pageable = CommandUtility.makePageable(paramMap);
         List<Object> res = CommandUtility.makeUrlAndCheckFilter(path, paramMap);
         String url = (String) res.get(0);
+        boolean filterOff = (boolean)res.get(1);
         CoursePage page = new CoursePage();
 
-        if ((boolean)res.get(1)) {
+        if (filterOff) {
             page = courseService.findAllCourses(pageable);
-        } else {
-            page = courseService.findCoursesByFilter(paramMap);
+        }
+        else {
+            page = courseService.findCoursesByFilter(paramMap, pageable, "general"
+                    , (Long)request.getSession().getAttribute("userId"));
         }
 
         request.setAttribute("page", page);
         request.setAttribute("url", url);
         paramMap.forEach((k,v)-> request.setAttribute(k,v));
+        request.setAttribute("selectedStatus", paramMap.get("fstatus"));
+        request.setAttribute("filterLink", path);
 
         return "/user/courses.jsp";
     }

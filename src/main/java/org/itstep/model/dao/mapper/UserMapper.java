@@ -44,4 +44,14 @@ public class UserMapper implements ObjectMapper<User> {
         cache.putIfAbsent(user.getId(), user);
         return cache.get(user.getId());
     }
+
+    public User extractFromResultSetC(ResultSet rs) throws SQLException{
+        User user = new User();
+        user.setId(rs.getLong(12));
+        user.setUsername(rs.getString(13));
+        user.setUsernameukr(rs.getString(14));
+        user.setEmail(rs.getString(15));
+        user.setActive(rs.getBoolean(17));
+        return user;
+    }
 }

@@ -5,6 +5,7 @@ D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\entity\Cour
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\UserDao.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\ExceptionCommand.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\listener\SessionListener.java
+D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\CourseListCommand.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\GenericDao.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\model\dao\impl\JDBCDaoFactory.java
 D:\JavaWork\JSP-Project\MyJSP\HomeEdx\src\main\java\org\itstep\controller\Command\CourseSaveCommand.java

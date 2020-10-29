@@ -120,10 +120,10 @@ class CommandUtility {
             char first = ((String)pair.getKey()).charAt(0);
             if(first=='f'){
                 String key = (String)pair.getKey();
-                if (key.equals("fusername")||key.equals("fname")){
-                    url.append("?");
-                } else {
+                if (url.toString().contains("?")){
                     url.append("&");
+                } else {
+                    url.append("?");
                 }
                 url.append(key);
                 url.append("=");
