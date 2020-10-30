@@ -52,6 +52,8 @@ public interface SQLConstants {
     String SQL_UPDATE_COURSE = "update course set name=?, nameukr=?, topic=?, topicukr=?, end_date=?," +
             " duration=?, start_date=?, usr_id=? where id=?";
     String SQL_CHECK_NAME_DATE_TEACHER="select count(id) from course where name=? and start_date=? and usr_id =?";
+    String SQL_CLEAR_ENROLLMENT = "delete from usr_has_course where course_id=?";
+    String SQL_DELETE_COURSE_BY_ID = "delete from course where id=?";
 
 
 

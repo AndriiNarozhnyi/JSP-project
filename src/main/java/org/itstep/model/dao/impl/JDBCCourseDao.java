@@ -105,6 +105,7 @@ public class JDBCCourseDao implements CourseDao {
     @Override
     public CoursePage findByFilterDispatcher(Pageable pageable, Map<String, String> paramMap, String menu, Long userId) {
         String queryMade = "";
+        //todo finish filter
 
         return findByFilter (pageable, paramMap, queryMade);
     }
@@ -300,14 +301,26 @@ public class JDBCCourseDao implements CourseDao {
     }
 
     @Override
-    public void delete(long courseId) {
-        try(PreparedStatement ps = connection.prepareStatement(SQL_DELETE_COURSE_BY_ID)){
-            ps.setLong( 1, courseId);
-            ResultSet rs = ps.executeQuery();
-            Course course = new Course();
-    } catch (SQLException e) {
-            e.printStackTrace();
+    public void delete(long courseId) throws SQLException {
+        try {
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+
+            PreparedStatement ps1 = connection.prepareStatement(SQL_CLEAR_ENROLLMENT);
+            ps1.setLong(1, courseId);
+            int rows1 = ps1.executeUpdate();
+
+            PreparedStatement ps2 = connection.prepareStatement(SQL_DELETE_COURSE_BY_ID);
+            ps2.setLong(1, courseId);
+            int rows2 = ps2.executeUpdate();
+
+            connection.commit();
+
+        } catch (SQLException ex) {
+            // (1) write to log
+            connection.rollback();
         }
+    }
 
         @Override
     public void close()  {

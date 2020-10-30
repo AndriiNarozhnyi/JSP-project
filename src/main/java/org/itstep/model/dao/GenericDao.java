@@ -9,6 +9,6 @@ public interface GenericDao<T> extends AutoCloseable {
     Optional<T> findById(Long id);
     List<T> findAll(Pageable pageable);
     void update(T entity) throws SQLException;
-    void delete(long id);
+    void delete(long id) throws SQLException;
     void close();
 }

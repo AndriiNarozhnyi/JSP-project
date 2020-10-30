@@ -43,6 +43,7 @@ public class JDBCUserDao implements UserDao, SQLConstants{
             try(PreparedStatement ps = connection.prepareCall(SQL_ADD_ROLE_FOR_USER)){
                 ps.setLong(1, user.getId());
                 ps.setString( 2, role.toString());
+                ps.executeUpdate();
             }catch (Exception ex){
                 throw new RuntimeException(ex);
             }
