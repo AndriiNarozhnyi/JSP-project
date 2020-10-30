@@ -26,9 +26,15 @@ public class CourseSaveCommand implements Command{
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         List<User> teachers = userService.getAllTeachers();
         request.setAttribute("teachers", teachers);
+        request.setAttribute("path", request.getParameter("path"));
         Map <String, String> paramMap = CommandUtility.refactorParamMap(request.getParameterMap());
+        Course course = new Course();
+        if (request.getParameter("path").equals("/admin/edit")) {
+            course = courseService.findById(Long.parseLong(request.getParameter("courseId")))
+                    .orElseThrow(() -> new RuntimeException(CommandUtility.setBundle(request).getString("NoCourWithId")));
+        }
 
-        List res = CommandUtility.checkCourseIncorrect(paramMap, request);
+        List res = CommandUtility.checkCourseIncorrect(paramMap, request, course);
         Map <String, String> answerMap = (Map)res.get(0);
         if(!(boolean)res.get(1)){
             paramMap.forEach(request::setAttribute);
@@ -42,21 +48,25 @@ public class CourseSaveCommand implements Command{
         if(courseService.checkNameDateTeacher(paramMap.get("name"), paramMap.get("startDate"), teacher.getId())){
             request.setAttribute("courAlEx", CommandUtility.setBundle(request).getString("courAlEx"));
             paramMap.forEach(request::setAttribute);
+            request.setAttribute("selectedTeacher", paramMap.get("teacherId"));
             return "/admin/CourseCreate.jsp";
         }
 
+            course.setName(paramMap.get("name"));
+            course.setNameukr(paramMap.get("nameukr"));
+            course.setTopic(paramMap.get("topic"));
+            course.setTopicukr(paramMap.get("topicukr"));
+            course.setStartDate(LocalDate.parse(paramMap.get("startDate")));
+            course.setDuration(DAYS.between(LocalDate.parse(paramMap.get("startDate")), LocalDate.parse(paramMap.get("endDate")).plusDays(1)));
+            course.setEndDate(LocalDate.parse(paramMap.get("endDate")));
+            course.setTeacher(teacher);
 
-        courseService.saveNewCourse(Course.builder()
-                .name(paramMap.get("name"))
-                .nameukr(paramMap.get("nameukr"))
-                .topic(paramMap.get("topic"))
-                .topicukr(paramMap.get("topicukr"))
-                .startDate(LocalDate.parse(paramMap.get("startDate")))
-                .duration(DAYS.between(LocalDate.parse(paramMap.get("startDate")), LocalDate.parse(paramMap.get("endDate")).plusDays(1)))
-                .endDate(LocalDate.parse(paramMap.get("endDate")))
-                .teacher(teacher)
-                .build());
+        if (request.getParameter("path").equals("/admin/edit")){
+            courseService.saveEditedCourse(course);
+            return "redirect:/user/courses";
+        }
 
-        return "/user/courses.jsp";
+        courseService.saveNewCourse(course);
+        return "redirect:/user/courses";
     }
 }

@@ -1,6 +1,5 @@
 package org.itstep.model.dao.impl;
 
-import lombok.Builder;
 import org.itstep.model.dao.Pageable;
 import org.itstep.model.dao.UserDao;
 import org.itstep.model.dao.UserPage;
@@ -9,7 +8,6 @@ import org.itstep.model.dao.mapper.UserMapper;
 import org.itstep.model.entity.Course;
 import org.itstep.model.entity.Role;
 import org.itstep.model.entity.User;
-import sun.jvm.hotspot.debugger.Page;
 
 import java.sql.*;
 import java.util.*;
@@ -281,7 +279,7 @@ public class JDBCUserDao implements UserDao, SQLConstants{
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
 
     }
 

@@ -16,4 +16,5 @@ public interface CourseDao extends GenericDao<Course>{
     void enrollUser(Long courseId, Long userId);
 
     void unenrollUser(long courseId, Long userId);
+
 }

@@ -3,18 +3,15 @@ package org.itstep.model.dao.impl;
 import org.itstep.model.dao.CourseDao;
 import org.itstep.model.dao.CoursePage;
 import org.itstep.model.dao.Pageable;
-import org.itstep.model.dao.UserPage;
 import org.itstep.model.dao.mapper.CourseMapper;
 import org.itstep.model.dao.mapper.UserMapper;
 import org.itstep.model.entity.Course;
-import org.itstep.model.entity.Role;
 import org.itstep.model.entity.User;
 
 import java.sql.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.itstep.model.dao.impl.SQLConstants.*;
 
@@ -230,11 +227,31 @@ public class JDBCCourseDao implements CourseDao {
 
     @Override
     public Optional<Course> findById(Long id) {
+        Map<Long, Course> courses = new HashMap<>();
+        try(PreparedStatement ps = connection.prepareStatement(SQL_FIND_COURSE_BY_ID)){
+            ps.setLong( 1, id);
+            ResultSet rs = ps.executeQuery();
+            Course course = new Course();
 
-        return null;
+            CourseMapper courseMapper = new CourseMapper();
+            UserMapper userMapper = new UserMapper();
+
+            while (rs.next()) {
+                course = courseMapper.extractFromResultSet(rs);
+                course = courseMapper.makeUnique(courses, course);
+                User teacher = userMapper.extractFromResultSetC(rs);
+                courses.get(course.getId()).setTeacher(teacher);
+                if (rs.getLong(10)!=0) {
+                    courses.get(course.getId()).getEnrolledStudents().add(rs.getLong(10));
+                }
+            }
+            return Optional.of(courses.get(course.getId()));
+
+
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
     }
-
-
 
     @Override
     public List<Course> findAll(Pageable pageable) {
@@ -242,14 +259,57 @@ public class JDBCCourseDao implements CourseDao {
     }
 
     @Override
-    public void update(Course entity) {
+    public void update(Course course) throws SQLException {
+        try{
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+
+            PreparedStatement ps = connection.prepareStatement(SQL_UPDATE_COURSE);
+            ps.setString( 1, course.getName());
+            ps.setString( 2, course.getNameukr());
+            ps.setString( 3, course.getTopic());
+            ps.setString( 4, course.getTopicukr());
+            ps.setDate( 5, Date.valueOf(course.getEndDate()));
+            ps.setLong( 6, course.getDuration());
+            ps.setDate( 7, Date.valueOf(course.getStartDate()));
+            ps.setLong( 8, course.getTeacher().getId());
+            ps.setLong(9, course.getId());
+
+            ps.executeUpdate();
+
+
+            PreparedStatement psc = connection.prepareStatement(SQL_CHECK_TEACHER);
+            psc.setLong(1, course.getTeacher().getId());
+            ResultSet rsc = psc.executeQuery();
+            int count = 0;
+            while (rsc.next()) {
+                count = rsc.getInt(1);
+            }
+            if (count == 0) {
+                PreparedStatement psi = connection.prepareStatement(SQL_SET_TEACHER);
+                psi.setLong(1, course.getTeacher().getId());
+                ResultSet rsi = psi.executeQuery();
+            }
+            connection.commit();
+
+        }
+        catch (SQLException ex) {
+            // (1) write to log
+            connection.rollback();
+        }
     }
 
     @Override
-    public void delete(int id) {
-    }
+    public void delete(long courseId) {
+        try(PreparedStatement ps = connection.prepareStatement(SQL_DELETE_COURSE_BY_ID)){
+            ps.setLong( 1, courseId);
+            ResultSet rs = ps.executeQuery();
+            Course course = new Course();
+    } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-    @Override
+        @Override
     public void close()  {
         try {
             connection.close();
@@ -258,26 +318,25 @@ public class JDBCCourseDao implements CourseDao {
         }
     }
 
-    public Optional<Course> findByName(String name) {
-
-        Optional<Course> result = Optional.empty();
-        try(PreparedStatement ps = connection.prepareCall("SELECT * FROM teacher WHERE name = ?")){
-            ps.setString( 1, name);
-            ResultSet rs;
-            rs = ps.executeQuery();
-            CourseMapper mapper = new CourseMapper();
-            if (rs.next()){
-                result = Optional.of(mapper.extractFromResultSet(rs));
-            }//TODO : ask question how avoid two teachers with the same name
-        }catch (Exception ex){
-            throw new RuntimeException(ex);
-        }
-        return result;
-    }
-
     @Override
-    public boolean checkNameDateTeacher(String name, String startDate, Long id) {
-        //todo finish method;
-        return false;
+    public boolean checkNameDateTeacher(String name, String startDate, Long teacherId) {
+        boolean res = false;
+        try(PreparedStatement ps = connection.prepareStatement(SQL_CHECK_NAME_DATE_TEACHER)){
+            ps.setString(1, name);
+            ps.setString(2, startDate);
+            ps.setLong(3, teacherId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                if (rs.getLong(1)>0) {
+                res = true;
+                }
+            }
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
     }
 }

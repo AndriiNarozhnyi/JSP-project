@@ -18,6 +18,7 @@ public class CourseCreateCommand implements Command{
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         List<User> teachers = userService.getAllTeachers();
         request.setAttribute("teachers", teachers);
+        request.setAttribute("path", "/admin/create");
         return "/admin/CourseCreate.jsp";
     }
 }

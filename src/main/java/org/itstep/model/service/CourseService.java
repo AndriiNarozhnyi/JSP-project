@@ -2,8 +2,10 @@ package org.itstep.model.service;
 
 import org.itstep.model.dao.*;
 import org.itstep.model.entity.Course;
+import org.itstep.model.entity.User;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class CourseService {
     DaoFactory daoFactory = DaoFactory.getInstance();
@@ -51,6 +53,30 @@ public class CourseService {
     public void unenrollUser(long courseId, Long userId) {
         try (CourseDao dao = daoFactory.createCourseDao()) {
             dao.unenrollUser(courseId, userId);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public Optional<Course> findById(Long courseId) {
+        Optional<Course> course = Optional.empty();
+        try (CourseDao dao = daoFactory.createCourseDao()) {
+            course = dao.findById(courseId);
+        }
+        return course;
+    }
+
+    public void saveEditedCourse(Course course) {
+        try (CourseDao dao = daoFactory.createCourseDao()) {
+            dao.update(course);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(long courseId) {
+        try (CourseDao dao = daoFactory.createCourseDao()) {
+            dao.delete(courseId);
         } catch (Exception e){
             e.printStackTrace();
         }

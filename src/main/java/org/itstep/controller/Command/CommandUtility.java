@@ -1,6 +1,7 @@
 package org.itstep.controller.Command;
 
 import org.itstep.model.dao.Pageable;
+import org.itstep.model.entity.Course;
 import org.itstep.model.entity.Role;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,7 +70,7 @@ class CommandUtility {
         return false;
     }
 
-    public static List checkCourseIncorrect(Map<String, String> form, HttpServletRequest request) {
+    public static List checkCourseIncorrect(Map<String, String> form, HttpServletRequest request, Course course) {
         List<Object> res = new ArrayList<>();
         Map<String, String> answer = new HashMap<>();
         boolean check = true;
@@ -90,8 +91,10 @@ class CommandUtility {
             check = false;
         }
         if (checkDate(form.get("startDate"))){
-            answer.put("incStartDate", CommandUtility.setBundle(request).getString("incStartDate"));
-            check = false;
+            if(course.getStartDate()==null||course.isNotStarted()) {
+                answer.put("incStartDate", CommandUtility.setBundle(request).getString("incStartDate"));
+                check = false;
+            }
         }
         if (checkDate(form.get("endDate"))){
             answer.put("incEndDate", CommandUtility.setBundle(request).getString("incEndDate"));

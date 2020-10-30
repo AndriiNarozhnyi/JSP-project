@@ -6,11 +6,13 @@
 <%@ page import="java.util.*, java.text.*" %>
 <%@ page import="org.itstep.model.entity.User" %>
 <%@ page import="java.util.stream.Collectors" %>
+<%@ page import="org.itstep.model.entity.Course" %>
 
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="res"/>
 <fmt:setLocale value="${param.lang}"/>
 <% List<User> teachers = (List)request.getAttribute("teachers");%>
+<% Course course = (Course)request.getAttribute("course"); %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -18,7 +20,8 @@
 <body>
 <%@ include file="/templates/header1.jsp"%>
 <div class="container">
-    <h3><fmt:message key="createCourse" /></h3>
+    <h3><% if (request.getAttribute("path")=="/admin/edit"){%><fmt:message key="courseEdit" />
+    <% }else {%> <fmt:message key="createCourse" /><%}%></h3>
 
     <form action="/admin/save" method="post">
         <div class="container">
@@ -75,7 +78,11 @@
                     <label><fmt:message key="startDate" /></label>
                 </div>
                 <div class="col col-lg-3">
+                    <% if(course!=null&&course.isStarted()){%>
+                    <input type="date" name="startDate" readOnly value=<%out.print(request.getAttribute("startDate")==null?"":request.getAttribute("startDate"));%>>
+                    <%} else {%>
                     <input type="date" name="startDate" value=<%out.print(request.getAttribute("startDate")==null?"":request.getAttribute("startDate"));%>>
+                    <%}%>
                 </div>
                 <% if (request.getAttribute("incStartDate")!=null){%>
                 <div class="alert alert-danger" role="alert">
@@ -87,7 +94,7 @@
                     <label><fmt:message key="endDate" /></label>
                 </div>
                 <div class="col col-lg-3">
-                    <input type="date" name="endDate" value=<%out.print(request.getAttribute("endDate")==null?"":request.getAttribute("startDate"));%>>
+                    <input type="date" name="endDate" value=<%out.print(request.getAttribute("endDate")==null?"":request.getAttribute("endDate"));%>>
                 </div>
                 <% if (request.getAttribute("incEndDate")!=null){%>
                 <div class="alert alert-danger" role="alert">
@@ -112,13 +119,17 @@
                             </option>
                         </c:forEach>
                     </select>
-<%--                    <div class="alert alert-danger" role="alert">--%>
-<%--                        This is a danger alert—check it out!--%>
-<%--                    </div>--%>
+                    <% if (request.getAttribute("courAlEx")!=null){%>
+                    <div class="alert alert-danger" role="alert">
+                        <%out.println(request.getAttribute("courAlEx"));%>
+                    </div><%}%>
+
                 </div>
             </div>
 
 <%--            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>--%>
+            <input type="hidden" name="path" value="<%out.print(request.getAttribute("path")==null?"":request.getAttribute("path"));%>">
+            <input type="hidden" name="courseId" value="<%out.print(request.getAttribute("courseId")==null?"":request.getAttribute("courseId"));%>">
             <div class="row justify-content-md-left">
                 <div class="col col-lg-2">
                     <button class="btn btn-secondary" type="submit"><fmt:message key="save" /></button>

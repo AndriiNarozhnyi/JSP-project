@@ -71,13 +71,7 @@
 <div class="container">
     <span><%@ include file="/templates/pagerC.jsp"%></span>
 <table>
-    <thead>
-    <tr class="text-center">
-        <th><fmt:message key="name" /></th><th><fmt:message key="Nameukr" /></th><th><fmt:message key="Topic" /></th><th><fmt:message key="Topicukr" /></th><th><fmt:message key="startDate"/></th>
-        <th><fmt:message key="dur"/></th><th><fmt:message key="endDate" /></th><th><fmt:message key="teacher" /></th><th><fmt:message key="qtystuds" /></th><th><fmt:message key="action" /></th>
-
-    </tr>
-    </thead>
+    <span><%@ include file="/templates/courseThead.jsp"%></span>
     <tbody>
     <% List<Course> courses = pager.getEntities();%>
     <% if(courses.size()==0){%>
@@ -87,62 +81,57 @@
     <%}%>
     <tr>
         <% for (Course course: courses){%>
-        <td class="text-center"><span><% out.print(course.getName());%></span></td>
-        <td class="text-center"><span><% out.print(course.getNameukr());%></span></td>
-        <td class="text-center"><span><% out.print(course.getTopic());%></span></td>
-        <td class="text-center"><span><% out.print(course.getTopicukr());%></span></td>
-        <td class="text-center"><span><% out.print(course.getStartDate().format(formatter));%></span></td>
-        <td class="text-center"><span><% out.print(course.getDuration());%></span></td>
-        <td class="text-center"><span><% out.print(course.getEndDate().format(formatter));%></span></td>
-        <td class="text-center"><span><% out.print(course.getTeacher().getUsername());%></span></td>
-        <td class="text-center"><span><% out.print(course.getEnrolledStudents().size());%></span></td>
-        <% if(course.isNotStarted()&&session.getAttribute("role")==Role.USER){%>
+        <span><%@ include file="/templates/courseDataFields.jsp"%></span>
+
         <td>
+            <% if(course.isNotStarted()&&session.getAttribute("role")!=Role.TEACHER){%>
             <% if(!course.getEnrolledStudents().contains(session.getAttribute("userId"))){%>
                 <form action="/user/enroll" method="post">
                     <input type="hidden" name="courseId" value="<%=course.getId()%>">
                     <input type="hidden" name="path" value=<%=request.getAttribute("filterLink")%>>
 <%--                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />--%>
-                    <button class="btn btn-success btn-xs" type="submit"><fmt:message key="enroll" /></button>
+                    <button class="btn btn-success btn-xs" type="submit" style="height: 30px;"><fmt:message key="enroll" /></button>
                 </form>
+            <%}%>
             <%}%>
         </td>
         <td>
+            <% if(course.isNotStarted()&&session.getAttribute("role")!=Role.TEACHER){%>
             <% if(course.getEnrolledStudents().contains(session.getAttribute("userId"))){%>
             <form action="/user/unenroll" method="post">
                 <input type="hidden" name="courseId" value=<%=course.getId()%>>
                 <input type="hidden" name="path" value=<%=request.getAttribute("filterLink")%>>
                 <%--                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />--%>
-                <button class="btn btn-warning btn-xs" type="submit"><fmt:message key="unenroll" /></button>
+                <button class="btn btn-xs btn-warning btn-xs" type="submit" style="height: 30px;"><fmt:message key="unenroll" /></button>
             </form>
             <%}%>
+            <%}%>
         </td>
-        </td>
-        <%}%>
         <td>
             <% if(session.getAttribute("role")==Role.ADMIN&&(!course.isFinished())){%>
             <form action="/admin/edit" method="post">
                 <input type="hidden" name="courseId" value=<%=course.getId()%>>
                 <input type="hidden" name="path" value=<%=request.getAttribute("filterLink")%>>
                 <%--                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />--%>
-            <button class="btn btn-dark mx-2" type="submit"><fmt:message key="edit" /></button>
+            <button class="btn btn-xs btn-dark" type="submit" style="height: 30px;"><fmt:message key="edit" /></button>
             </form>
             <%}%>
         </td>
-<%--        <td th:if="${#request.userPrincipal.principal.isAdmin()}">--%>
-<%--            <div th:if="${course.isNotStarted()}">--%>
-<%--                <form th:action="@{/adminupdate/delete/{id}(id=${course.id})}" method="post">--%>
-<%--                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />--%>
-<%--                    <button type="submit" class="btn btn-danger" th:text="#{delete}">Delete</button>--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--        </td>--%>
+        <td>
+            <% if(course.isNotStarted()){%>
+            <% if(session.getAttribute("role")==Role.ADMIN){%>
+            <form action="/admin/predelete" method="post">
+                <input type="hidden" name="courseId" value=<%=course.getId()%>>
+                <%--<input type="hidden" name="_csrf" th:value="${_csrf.token}" />--%>
+                <button class="btn btn-xs btn-danger" type="submit" style="height: 30px;"><fmt:message key="delete" /></button>
+            </form>
+            <%}%>
+            <%}%>
+        </td>
     </tr>
     <%}%>
     </tbody>
 </table>
-
 </div>
-<div th:include="fragments/footer::footer"></div>
 </body>
 </html>
