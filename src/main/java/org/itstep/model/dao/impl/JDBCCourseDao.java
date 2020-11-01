@@ -186,7 +186,7 @@ public class JDBCCourseDao implements CourseDao {
         List<Long> ids = (List<Long>) res.get(0);
         int numberOfRowsDb = (int) res.get(1);
 
-        String query = Utils.queryBuilder(ids, queryMade, pageable);
+        String query = Utils.queryBuilder(ids, SQL_COURSE_TEMPLATE, pageable);
         page.setEntities((List<Course>) getDataBaseRows(courses, query));
         page.setPageNumber(pageable.getPage());
         page.setTotalPages(numberOfRowsDb%numberOfRecords==0

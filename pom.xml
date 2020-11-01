@@ -17,6 +17,14 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.21</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+      <scope>test</scope>
+    </dependency>
+
 
     <dependency>
       <groupId>junit</groupId>
@@ -32,12 +40,14 @@
       <scope>test</scope>
     </dependency>
 <!--    &lt;!&ndash;    &lt;!&ndash; https://mvnrepository.com/artifact/javax.servlet/servlet-api &ndash;&gt;-->
-        <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>servlet-api</artifactId>
-          <version>2.5</version>
-          <scope>provided</scope>
-        </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
@@ -108,12 +118,7 @@
           <path>/</path>
         </configuration>
       </plugin>
-      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
-<!--      <dependency>-->
-<!--        <groupId>org.apache.maven.plugins</groupId>-->
-<!--        <artifactId>maven-compiler-plugin</artifactId>-->
 
-<!--      </dependency>-->
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
