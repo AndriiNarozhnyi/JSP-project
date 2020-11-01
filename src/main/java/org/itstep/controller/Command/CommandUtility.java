@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class CommandUtility {
     static ResourceBundle setBundle(HttpServletRequest request){
@@ -160,4 +162,47 @@ class CommandUtility {
         }
         return pageable;
     }
+
+    public static List checkUserIncorrect(Map<String, String> form, HttpServletRequest request) {
+        List<Object> res = new ArrayList<>();
+        Map<String, String> answer = new HashMap<>();
+        boolean check = false;
+        if (checkNameEmpty(form.get("username"))) {
+            answer.put("incusername", setBundle(request).getString("incusername"));
+            check = true;
+        }
+        if (checkNameEmpty(form.get("usernameukr"))) {
+            answer.put("incusernameukr", setBundle(request).getString("incusernameukr"));
+            check = true;
+        }
+        if (!emailValid(form.get("email"))) {
+            answer.put("emailIncorrect", setBundle(request).getString("emailIncorrect"));
+            check = true;
+        }
+        if (form.get("pasword")!=null) {
+            if (passwordCheckIncorrect(form.get("password"))) {
+                answer.put("incpassword", setBundle(request).getString("incpassword"));
+                check = true;
+            }
+        }
+        res.add(answer);
+        res.add(check);
+        return res;
+    }
+
+    static boolean emailValid(String email) {
+        final Pattern mailRegex =
+                Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+        Matcher matcher = mailRegex.matcher(email);
+        return email!=null&&matcher.find();
+    }
+
+    private static boolean passwordCheckIncorrect(String password) {
+        final Pattern passwordRegex =
+                Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,32}$");
+        Matcher matcher = passwordRegex.matcher(password);
+        return !matcher.find();
+    }
+
 }

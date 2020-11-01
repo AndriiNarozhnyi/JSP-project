@@ -25,10 +25,10 @@ public class CourseService {
         }
     }
 
-    public CoursePage findAllCourses(Pageable pageable) {
+    public CoursePage findAllCourses(Pageable pageable, String path, Long userId) {
         CoursePage page;
         try (CourseDao dao = daoFactory.createCourseDao()) {
-            page = dao.findAllPageable(pageable);
+            page = dao.findAllDispatcher(pageable, path, userId);
         }
         return page;
     }

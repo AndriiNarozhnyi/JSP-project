@@ -40,6 +40,8 @@ public class Servlet extends HttpServlet {
         commands.put("/admin/edit", new CourseEditCommand(new CourseService(), new UserService()));
         commands.put("/admin/predelete", new CoursePredeleteCommand(new CourseService()));
         commands.put("/admin/delete", new CourseDeleteCommand(new CourseService()));
+        commands.put("/user/cabinet", new CourseListCommand(new CourseService()));
+        commands.put("/teacher/cabinet", new CourseListCommand(new CourseService()));
     }
 
     public void doGet(HttpServletRequest request,

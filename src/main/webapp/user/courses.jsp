@@ -84,7 +84,7 @@
         <span><%@ include file="/templates/courseDataFields.jsp"%></span>
 
         <td>
-            <% if(course.isNotStarted()&&session.getAttribute("role")!=Role.TEACHER){%>
+            <% if(course.isNotStarted()&&course.getTeacher().getId()!=session.getAttribute("userId")){%>
             <% if(!course.getEnrolledStudents().contains(session.getAttribute("userId"))){%>
                 <form action="/user/enroll" method="post">
                     <input type="hidden" name="courseId" value="<%=course.getId()%>">
@@ -96,7 +96,7 @@
             <%}%>
         </td>
         <td>
-            <% if(course.isNotStarted()&&session.getAttribute("role")!=Role.TEACHER){%>
+            <% if(course.isNotStarted()&&course.getTeacher().getId()!=session.getAttribute("userId")){%>
             <% if(course.getEnrolledStudents().contains(session.getAttribute("userId"))){%>
             <form action="/user/unenroll" method="post">
                 <input type="hidden" name="courseId" value=<%=course.getId()%>>

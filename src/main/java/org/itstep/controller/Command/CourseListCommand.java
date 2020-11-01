@@ -18,7 +18,7 @@ public class CourseListCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String path = "/user/courses";
+        String path = request.getRequestURI();
         Map<String, String> paramMap = CommandUtility.refactorParamMap(request.getParameterMap());
         Pageable pageable = CommandUtility.makePageable(paramMap);
         List<Object> res = CommandUtility.makeUrlAndCheckFilter(path, paramMap);
@@ -27,10 +27,10 @@ public class CourseListCommand implements Command{
         CoursePage page = new CoursePage();
 
         if (filterOff) {
-            page = courseService.findAllCourses(pageable);
+            page = courseService.findAllCourses(pageable, path, (Long)request.getSession().getAttribute("userId"));
         }
         else {
-            page = courseService.findCoursesByFilter(paramMap, pageable, "general"
+            page = courseService.findCoursesByFilter(paramMap, pageable, path
                     , (Long)request.getSession().getAttribute("userId"));
         }
 

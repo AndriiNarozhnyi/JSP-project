@@ -32,12 +32,12 @@
                 <%}%>
                     <% if(request.getSession().getAttribute("role")!=null&&request.getSession().getAttribute("role")!= Role.UNKNOWN){%>
                     <li class="nav-item">
-                        <a class="nav-link" href="/cabinet" ><fmt:message key="Cabinet" /></a>
+                        <a class="nav-link" href="/user/cabinet" ><fmt:message key="Cabinet" /></a>
                     </li>
                 <%}%>
                 <% if (request.getSession().getAttribute("role")==Role.TEACHER){%>
                     <li class="nav-item">
-                        <a class="nav-link" href="/teacher" ><fmt:message key="teacherCabinet" /></a>
+                        <a class="nav-link" href="/teacher/cabinet" ><fmt:message key="teacherCabinet" /></a>
                     </li>
                 <%}%>
                     <% if (request.getSession().getAttribute("role")==Role.ADMIN){%>

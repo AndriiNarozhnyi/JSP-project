@@ -17,11 +17,27 @@
 <body>
 <%@ include file="/templates/header1.jsp"%>
 <div class="container">
-<%--    <div><span th:text="${message_pres}?${message_pres}:''"></span></div>--%>
-<%--    <div><span th:text="${emailIncorrect}?${emailIncorrect}:''"></span></div>--%>
-<%--    <div><span th:text="${incusername}?${incusername}:''"></span></div>--%>
-<%--    <div><span th:text="${incusernameukr}?${incusernameukr}:''"></span></div>--%>
-<%--    <div><span th:text="${incpassword}?${incpassword}:''"></span></div>--%>
+    <% if (request.getAttribute("messageUserPresent")!=null){%>
+    <div class="alert alert-danger" role="alert">
+        <%out.println(request.getAttribute("messageUserPresent"));%>
+    </div><%}%>
+    <% if (request.getAttribute("incusername")!=null){%>
+    <div class="alert alert-danger" role="alert">
+        <%out.println(request.getAttribute("incusername"));%>
+    </div><%}%>
+    <% if (request.getAttribute("incusernameukr")!=null){%>
+    <div class="alert alert-danger" role="alert">
+        <%out.println(request.getAttribute("incusernameukr"));%>
+    </div><%}%>
+    <% if (request.getAttribute("emailIncorrect")!=null){%>
+    <div class="alert alert-danger" role="alert">
+        <%out.println(request.getAttribute("emailIncorrect"));%>
+    </div><%}%>
+    <% if (request.getAttribute("incpassword")!=null){%>
+    <div class="alert alert-danger" role="alert">
+        <%out.println(request.getAttribute("incpassword"));%>
+    </div><%}%>
+
     <br>
     <form action="/registration" method="post">
         <div class="row justify-content-md-left">
@@ -30,7 +46,7 @@
             </div>
             <div class="col col-lg-3">
                 <input type="text" name="username"
-<%--                       value="${username}?${username}:''" th:placeholder="#{username}"--%>
+                       value="<%out.print(request.getAttribute("username")==null?"":request.getAttribute("username"));%>"
                 />
             </div>
         </div>
@@ -40,7 +56,7 @@
             </div>
             <div class="col col-lg-3">
                 <input type="text" name="usernameukr"
-<%--                       th:value="${usernameukr}?${usernameukr}:''" th:placeholder="#{usernameUkr}" --%>
+                       value="<%out.print(request.getAttribute("usernameukr")==null?"":request.getAttribute("usernameukr"));%>"
                 />
             </div>
         </div>
@@ -50,7 +66,7 @@
             </div>
             <div class="col col-lg-3">
                 <input type="text" name="email"
-<%--                       th:value="${email}?${email}:''" th:placeholder="#{email}"--%>
+                       value="<%out.print(request.getAttribute("email")==null?"":request.getAttribute("email"));%>"
                 />
             </div>
         </div>
@@ -60,7 +76,7 @@
             </div>
             <div class="col col-lg-3">
                 <input type="password" name="password"
-<%--                       th:placeholder="#{password}" --%>
+                       value="<%out.print(request.getAttribute("password")==null?"":request.getAttribute("password"));%>"
                 />
             </div>
         </div>

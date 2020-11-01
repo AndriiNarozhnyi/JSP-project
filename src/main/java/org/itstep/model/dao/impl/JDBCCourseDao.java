@@ -68,7 +68,7 @@ public class JDBCCourseDao implements CourseDao {
     }
 
     @Override
-    public CoursePage findAllPageable(Pageable pageable) {
+    public CoursePage findAllPageable(Pageable pageable, String queryMade) {
         Map<Long, User> users = new HashMap<>();
         Map<Long, Course> courses = new HashMap<>();
         int offset = pageable.getPage()*pageable.getSize() - pageable.getSize();
@@ -78,7 +78,7 @@ public class JDBCCourseDao implements CourseDao {
         List<Long> ids = new ArrayList<>();
         CoursePage page = new CoursePage();
 
-        try(PreparedStatement stForPag = connection.prepareStatement(SQL_COURSE_FOR_PAGE)){
+        try(PreparedStatement stForPag = connection.prepareStatement(queryMade)){
             stForPag.setInt(1,offset);
             stForPag.setInt(2, numberOfRecords);
             ResultSet rs = stForPag.executeQuery();
@@ -103,11 +103,25 @@ public class JDBCCourseDao implements CourseDao {
     }
 
     @Override
-    public CoursePage findByFilterDispatcher(Pageable pageable, Map<String, String> paramMap, String menu, Long userId) {
+    public CoursePage findByFilterDispatcher(Pageable pageable, Map<String, String> paramMap, String path, Long userId) {
+        StringBuilder sb = new StringBuilder(SQL_COURSE_FILTER);
         String queryMade = "";
-        //todo finish filter
+        switch (path){
+            case "/teacher/cabinet":
+                queryMade = maKeQuery(sb, 300, "and c.usr_id="+userId + " ");
+                break;
+            case "/user/cabinet":
+                queryMade = maKeQuery(sb, 300, "and uhc.usr_id="+userId+" ");
+                break;
+            default:
+                queryMade = sb.toString();
+                break;
+        }
 
         return findByFilter (pageable, paramMap, queryMade);
+    }
+    private String maKeQuery(StringBuilder sb, int offset, String addition){
+        return sb.insert(offset, addition).toString();
     }
 
     @Override
@@ -144,6 +158,24 @@ public class JDBCCourseDao implements CourseDao {
         }
     }
 
+    @Override
+    public CoursePage findAllDispatcher(Pageable pageable, String path, Long userId) {
+        StringBuilder sb = new StringBuilder(SQL_COURSE_FOR_PAGE);
+        String queryMade = "";
+        switch (path){
+            case "/teacher/cabinet":
+                queryMade = maKeQuery(sb, 131,"where c.usr_id="+userId + " ");
+                break;
+            case "/user/cabinet":
+                queryMade = maKeQuery(sb, 131, "where uhc.usr_id="+userId+" ");
+                break;
+            default:
+                queryMade = sb.toString();
+                break;
+        }
+        return findAllPageable (pageable, queryMade);
+    }
+
     private CoursePage findByFilter(Pageable pageable, Map<String, String> paramMap, String queryMade) {
         Map<Long, Course> courses = new HashMap<>();
         CoursePage page = new CoursePage();
@@ -154,7 +186,7 @@ public class JDBCCourseDao implements CourseDao {
         List<Long> ids = (List<Long>) res.get(0);
         int numberOfRowsDb = (int) res.get(1);
 
-        String query = Utils.queryBuilder(ids, SQL_COURSE_TEMPLATE, pageable);
+        String query = Utils.queryBuilder(ids, queryMade, pageable);
         page.setEntities((List<Course>) getDataBaseRows(courses, query));
         page.setPageNumber(pageable.getPage());
         page.setTotalPages(numberOfRowsDb%numberOfRecords==0
@@ -168,7 +200,7 @@ public class JDBCCourseDao implements CourseDao {
         List<Object> res = new ArrayList<>();
         Set<Long> ids = new HashSet<>();
         int numberOfRowsDb = 0;
-        try(PreparedStatement stForPag = connection.prepareStatement(SQL_COURSE_FILTER)){
+        try(PreparedStatement stForPag = connection.prepareStatement(queryMade)){
             stForPag.setString(1,"%"+paramMap.get("fname")+"%");
             stForPag.setString(2,"%"+paramMap.get("fnameukr")+"%");
             stForPag.setString(3,"%"+paramMap.get("ftopic")+"%");
@@ -313,7 +345,6 @@ public class JDBCCourseDao implements CourseDao {
             PreparedStatement ps2 = connection.prepareStatement(SQL_DELETE_COURSE_BY_ID);
             ps2.setLong(1, courseId);
             int rows2 = ps2.executeUpdate();
-
             connection.commit();
 
         } catch (SQLException ex) {
@@ -352,4 +383,6 @@ public class JDBCCourseDao implements CourseDao {
         }
         return res;
     }
+
+
 }

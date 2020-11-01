@@ -11,7 +11,8 @@ public class LogOutCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
 
-        ServletContext context = session.getServletContext();HashSet<Long> loggedUsers = (HashSet<Long>) request.getSession().getServletContext()
+        ServletContext context = session.getServletContext();
+        HashSet<Long> loggedUsers = (HashSet<Long>) request.getSession().getServletContext()
                 .getAttribute("loggedUsers");
         loggedUsers.remove(session.getAttribute("userId"));
 

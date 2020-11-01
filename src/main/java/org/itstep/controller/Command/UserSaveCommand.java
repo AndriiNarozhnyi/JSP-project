@@ -6,9 +6,7 @@ import org.itstep.model.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserSaveCommand implements Command{
@@ -19,8 +17,21 @@ public class UserSaveCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        Map<String, String> paramMap = request.getParameterMap();
-        //todo - validate incoming user data
+        Map<String, String> form = CommandUtility.refactorParamMap(request.getParameterMap());
+        List<Object> res = CommandUtility.checkUserIncorrect(form, request);
+        boolean userIncorrect = (boolean)res.get(1);
+        if(userIncorrect){
+            Map<String, String> answer = (Map<String, String>) res.get(0);
+            form.forEach((k,v)->request.setAttribute(k,v));
+            answer.forEach((k,v)->request.setAttribute(k,v));
+            Long userId = Long.parseLong(request.getParameter("userId"));
+            User user = userService.findById(userId).orElseThrow(()-> new RuntimeException(
+                    CommandUtility.setBundle(request).getString("NoUsrWithId")));
+            request.setAttribute("user", user);
+            request.setAttribute("roles", Arrays.stream(Role.values())
+                    .filter(r->!r.equals(Role.UNKNOWN)).collect(Collectors.toSet()));
+            return "/admin/userEdit.jsp";
+        }
         Long userId = Long.parseLong(request.getParameter("userId"));
         User user = userService.findById(userId).orElseThrow(()-> new RuntimeException(
                 CommandUtility.setBundle(request).getString("NoUsrWithId")));
@@ -39,12 +50,23 @@ public class UserSaveCommand implements Command{
                 .collect(Collectors.toSet());
         user.getRoles().clear();
 
-        for (String key : paramMap.keySet()) {
+        for (String key : form.keySet()) {
             if (roles.contains(key)) {
                 user.getRoles().add(Role.valueOf(key));
             }
         }
-        userService.saveEditedUser(user);
+        try {
+            userService.saveEditedUser(user);
+        } catch (Exception e){
+            e.printStackTrace();
+            form.forEach((k,v)->request.setAttribute(k,v));
+            request.setAttribute("messageUserPresent", CommandUtility.setBundle(request).
+                    getString("messageUserPresent"));
+            request.setAttribute("user", user);
+            request.setAttribute("roles", Arrays.stream(Role.values())
+                    .filter(r->!r.equals(Role.UNKNOWN)).collect(Collectors.toSet()));
+            return "/admin/userEdit.jsp";
+        }
 
     return "redirect:/admin/user";
     }

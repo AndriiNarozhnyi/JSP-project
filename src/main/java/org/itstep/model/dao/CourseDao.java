@@ -9,7 +9,7 @@ public interface CourseDao extends GenericDao<Course>{
     boolean checkNameDateTeacher(String name, String startDate, Long id);
     boolean createCourse(Course course) throws SQLException;
 
-    CoursePage findAllPageable(Pageable pageable);
+    CoursePage findAllPageable(Pageable pageable, String query);
 
     CoursePage findByFilterDispatcher(Pageable pageable, Map<String, String> paramMap, String menu, Long userId);
 
@@ -17,4 +17,5 @@ public interface CourseDao extends GenericDao<Course>{
 
     void unenrollUser(long courseId, Long userId);
 
+    CoursePage findAllDispatcher(Pageable pageable, String path, Long userId);
 }

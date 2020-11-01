@@ -36,7 +36,8 @@ public interface SQLConstants {
 
     String SQL_COURSE_TEMPLATE ="select c.*,uhc.usr_id,uhc.course_id,u.* from course c LEFT JOIN usr_has_course uhc " +
             "ON c.id=uhc.course_id INNER JOIN usr u ON c.usr_id=u.id where c.id IN ";
-    String SQL_COURSE_FOR_PAGE = "select SQL_CALC_FOUND_ROWS id from course order by id limit ?,?";
+    String SQL_COURSE_FOR_PAGE = "select SQL_CALC_FOUND_ROWS c.id from course c Left join usr_has_course uhc " +
+            "ON c.id=uhc.course_id INNER JOIN usr u ON c.usr_id=u.id order by c.id limit ?,?";
     String SQL_CREATE_NEW_COURSE = "insert into course (name, nameukr, topic, topicukr, end_date, duration, start_date, usr_id)" +
             "values (?, ?, ?, ?, ?, ?, ?, ?)";
     String SQL_CHECK_TEACHER = "select count(role) from role where usr_id = ? and role = 'TEACHER'";

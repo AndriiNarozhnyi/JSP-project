@@ -18,12 +18,25 @@
 <body>
 <%@ include file="/templates/header1.jsp"%>
 <% User user = (User)request.getAttribute("user");%>
-<% Set<Role> roles = (Set<Role>)request.getAttribute("roles");
-Set<String> rolest = (Set<String>)request.getAttribute("rolest");%>
+<% Set<Role> roles = (Set<Role>)request.getAttribute("roles");%>
+
 <div class="container">
-<%--        <div th:each="err : ${error}">--%>
-<%--            <span th:text="${err.getValue()}"></span>--%>
-<%--        </div>--%>
+<% if (request.getAttribute("messageUserPresent")!=null){%>
+<div class="alert alert-danger" role="alert">
+    <%out.println(request.getAttribute("messageUserPresent"));%>
+</div><%}%>
+<% if (request.getAttribute("incusername")!=null){%>
+<div class="alert alert-danger" role="alert">
+    <%out.println(request.getAttribute("incusername"));%>
+</div><%}%>
+<% if (request.getAttribute("incusernameukr")!=null){%>
+<div class="alert alert-danger" role="alert">
+    <%out.println(request.getAttribute("incusernameukr"));%>
+</div><%}%>
+<% if (request.getAttribute("emailIncorrect")!=null){%>
+<div class="alert alert-danger" role="alert">
+    <%out.println(request.getAttribute("emailIncorrect"));%>
+</div><%}%>
 
 <form action="/admin/user/save" method="post">
     <div class="row justify-content-md-left">
