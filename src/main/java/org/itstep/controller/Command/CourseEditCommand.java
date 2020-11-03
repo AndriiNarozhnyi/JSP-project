@@ -1,5 +1,6 @@
 package org.itstep.controller.Command;
 
+import org.itstep.controller.Command.Utility.ValidationAndLocaleUtility;
 import org.itstep.model.entity.Course;
 import org.itstep.model.entity.User;
 import org.itstep.model.service.CourseService;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class CourseEditCommand implements Command{
+public class CourseEditCommand implements Command {
     private CourseService courseService;
     private UserService userService;
 
@@ -22,8 +23,8 @@ public class CourseEditCommand implements Command{
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         List<User> teachers = userService.getAllTeachers();
         Course course = courseService.findById(Long.parseLong(request.getParameter("courseId")))
-                .orElseThrow(()-> new RuntimeException(
-                CommandUtility.setBundle(request).getString("NoCourWithId")));
+                .orElseThrow(() -> new RuntimeException(
+                        ValidationAndLocaleUtility.setBundle(request).getString("NoCourWithId")));
 
         request.setAttribute("courseId", course.getId());
         request.setAttribute("name", course.getName());

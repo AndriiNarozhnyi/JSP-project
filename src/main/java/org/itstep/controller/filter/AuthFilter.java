@@ -1,4 +1,4 @@
-package org.itstep.controller.filters;
+package org.itstep.controller.filter;
 
 import org.itstep.model.entity.Role;
 

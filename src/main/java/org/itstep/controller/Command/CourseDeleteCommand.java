@@ -5,7 +5,7 @@ import org.itstep.model.service.CourseService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CourseDeleteCommand implements Command{
+public class CourseDeleteCommand implements Command {
     private CourseService courseService;
 
     public CourseDeleteCommand(CourseService courseService) {

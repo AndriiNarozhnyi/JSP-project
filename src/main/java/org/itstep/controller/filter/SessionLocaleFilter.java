@@ -1,4 +1,4 @@
-package org.itstep.controller.filters;
+package org.itstep.controller.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

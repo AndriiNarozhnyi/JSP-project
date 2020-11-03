@@ -13,7 +13,7 @@
 
   <filter>
     <filter-name>EncodingFilter</filter-name>
-    <filter-class>org.itstep.controller.filters.EncodingFilter</filter-class>
+    <filter-class>org.itstep.controller.filter.EncodingFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>EncodingFilter</filter-name>
@@ -22,7 +22,7 @@
 
     <filter>
         <filter-name>AuthFilter</filter-name>
-        <filter-class>org.itstep.controller.filters.AuthFilter</filter-class>
+        <filter-class>org.itstep.controller.filter.AuthFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
@@ -31,7 +31,7 @@
 
   <filter>
     <filter-name>SessionLocaleFilter</filter-name>
-    <filter-class>org.itstep.controller.filters.SessionLocaleFilter</filter-class>
+    <filter-class>org.itstep.controller.filter.SessionLocaleFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>SessionLocaleFilter</filter-name>

@@ -26,12 +26,10 @@ public class Servlet extends HttpServlet {
                 new LogOutCommand());
         commands.put("/login",
                 new LoginCommand(new UserService()));
-        commands.put("/exception" , new ExceptionCommand());
         commands.put("/registration", new RegistrationCommand(new UserService()));
         commands.put("/admin/user", new UserListCommand(new UserService()));
         commands.put("/admin/user/edit", new UserEditCommand(new UserService()));
         commands.put("/admin/user/save", new UserSaveCommand(new UserService()));
-        commands.put("/admin/user/filter", new UserFilterCommand(new UserService()));
         commands.put("/admin/create", new CourseCreateCommand(new UserService()));
         commands.put("/admin/save", new CourseSaveCommand(new UserService(), new CourseService()));
         commands.put("/user/courses", new CourseListCommand(new CourseService()));

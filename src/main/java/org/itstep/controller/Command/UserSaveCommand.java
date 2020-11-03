@@ -1,5 +1,7 @@
 package org.itstep.controller.Command;
 
+import org.itstep.controller.Command.Utility.PaginationAndParamMapUtility;
+import org.itstep.controller.Command.Utility.ValidationAndLocaleUtility;
 import org.itstep.model.entity.Role;
 import org.itstep.model.entity.User;
 import org.itstep.model.service.UserService;
@@ -9,37 +11,38 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class UserSaveCommand implements Command{
+public class UserSaveCommand implements Command {
     private UserService userService;
+
     public UserSaveCommand(UserService userService) {
         this.userService = userService;
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        Map<String, String> form = CommandUtility.refactorParamMap(request.getParameterMap());
-        List<Object> res = CommandUtility.checkUserIncorrect(form, request);
-        boolean userIncorrect = (boolean)res.get(1);
-        if(userIncorrect){
+        Map<String, String> form = PaginationAndParamMapUtility.refactorParamMap(request.getParameterMap());
+        List<Object> res = ValidationAndLocaleUtility.checkUserIncorrect(form, request);
+        boolean userIncorrect = (boolean) res.get(1);
+        if (userIncorrect) {
             Map<String, String> answer = (Map<String, String>) res.get(0);
-            form.forEach((k,v)->request.setAttribute(k,v));
-            answer.forEach((k,v)->request.setAttribute(k,v));
+            form.forEach((k, v) -> request.setAttribute(k, v));
+            answer.forEach((k, v) -> request.setAttribute(k, v));
             Long userId = Long.parseLong(request.getParameter("userId"));
-            User user = userService.findById(userId).orElseThrow(()-> new RuntimeException(
-                    CommandUtility.setBundle(request).getString("NoUsrWithId")));
+            User user = userService.findById(userId).orElseThrow(() -> new RuntimeException(
+                    ValidationAndLocaleUtility.setBundle(request).getString("NoUsrWithId")));
             request.setAttribute("user", user);
             request.setAttribute("roles", Arrays.stream(Role.values())
-                    .filter(r->!r.equals(Role.UNKNOWN)).collect(Collectors.toSet()));
+                    .filter(r -> !r.equals(Role.UNKNOWN)).collect(Collectors.toSet()));
             return "/admin/userEdit.jsp";
         }
         Long userId = Long.parseLong(request.getParameter("userId"));
-        User user = userService.findById(userId).orElseThrow(()-> new RuntimeException(
-                CommandUtility.setBundle(request).getString("NoUsrWithId")));
+        User user = userService.findById(userId).orElseThrow(() -> new RuntimeException(
+                ValidationAndLocaleUtility.setBundle(request).getString("NoUsrWithId")));
         user.setUsername(request.getParameter("username"));
         user.setUsernameukr(request.getParameter("usernameukr"));
         user.setEmail(request.getParameter("email"));
 
-        if (request.getParameter("isActive")!=null) {
+        if (request.getParameter("isActive") != null) {
             user.setActive(true);
         } else {
             user.setActive(false);
@@ -57,17 +60,17 @@ public class UserSaveCommand implements Command{
         }
         try {
             userService.saveEditedUser(user);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            form.forEach((k,v)->request.setAttribute(k,v));
-            request.setAttribute("messageUserPresent", CommandUtility.setBundle(request).
+            form.forEach((k, v) -> request.setAttribute(k, v));
+            request.setAttribute("messageUserPresent", ValidationAndLocaleUtility.setBundle(request).
                     getString("messageUserPresent"));
             request.setAttribute("user", user);
             request.setAttribute("roles", Arrays.stream(Role.values())
-                    .filter(r->!r.equals(Role.UNKNOWN)).collect(Collectors.toSet()));
+                    .filter(r -> !r.equals(Role.UNKNOWN)).collect(Collectors.toSet()));
             return "/admin/userEdit.jsp";
         }
 
-    return "redirect:/admin/user";
+        return "redirect:/admin/user";
     }
 }

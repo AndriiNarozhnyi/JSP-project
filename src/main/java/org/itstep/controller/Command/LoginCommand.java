@@ -1,5 +1,6 @@
 package org.itstep.controller.Command;
 
+import org.itstep.controller.Command.Utility.LoginUtility;
 import org.itstep.model.entity.Role;
 import org.itstep.model.entity.User;
 import org.itstep.model.service.UserService;
@@ -32,23 +33,21 @@ public class LoginCommand implements Command {
             return "/login.jsp";
         }
 
-        if (CommandUtility.checkUserIsLogged(request, user.get().getId())) {
+        if (LoginUtility.checkUserIsLogged(request, user.get().getId())) {
             return "/WEB-INF/error.jsp";
         }
 
         if (user.get().getRoles().contains(Role.ADMIN)) {
-            CommandUtility.setUserRole(request, Role.ADMIN, user.get().getId());
+            LoginUtility.setUserRole(request, Role.ADMIN, user.get().getId());
             return "redirect:/user/courses";
         } else if (user.get().getRoles().contains(Role.TEACHER)) {
-            CommandUtility.setUserRole(request, Role.TEACHER, user.get().getId());
+            LoginUtility.setUserRole(request, Role.TEACHER, user.get().getId());
             return "redirect:/teacher/cabinet";
         } else if (user.get().getRoles().contains(Role.USER)) {
-            CommandUtility.setUserRole(request, Role.USER, user.get().getId());
-            ResourceBundle bundle = CommandUtility.setBundle(request);
-            request.setAttribute("message1", bundle.getString("incEndDate"));
+            LoginUtility.setUserRole(request, Role.USER, user.get().getId());
             return "redirect:/user/courses";
         } else {
-            CommandUtility.setUserRole(request, Role.UNKNOWN, -1L);
+            LoginUtility.setUserRole(request, Role.UNKNOWN, -1L);
             return "/login.jsp";
         }
     }
