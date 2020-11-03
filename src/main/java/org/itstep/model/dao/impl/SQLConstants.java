@@ -44,8 +44,12 @@ public interface SQLConstants {
     String SQL_SET_TEACHER = "INSERT INTO role (usr_id, role) values (?, 'TEACHER')";
     String SQL_COURSE_FILTER = "select SQL_CALC_FOUND_ROWS c.id from course c left join usr_has_course uhc " +
             "ON c.id = uhc.course_id join usr u ON c.usr_id = u.id where c.name like ? " +
-            "and c.nameukr like ? and topic like ? and topicukr like ? and start_date > ? and duration >= ? " +
-            "and duration <= ? and end_date <? and u.username like ? limit ?,?";
+            "and c.nameukr like ? and topic like ? and topicukr like ? and start_date >= ? and duration >= ? " +
+            "and duration <= ? and end_date <=? and u.username like ? limit ?,?";
+    String SQL_COURSE_FILTER_IP = "select SQL_CALC_FOUND_ROWS c.id from course c left join usr_has_course uhc " +
+            "ON c.id = uhc.course_id join usr u ON c.usr_id = u.id where c.name like ? " +
+            "and c.nameukr like ? and topic like ? and topicukr like ? and start_date <= ? and duration >= ? " +
+            "and duration <= ? and end_date >=? and u.username like ? limit ?,?";
     String SQL_ENROLL_USER = "INSERT INTO usr_has_course (usr_id, course_id) values (?, ?)";
     String SQL_UNENROLL_USER = "delete from usr_has_course where usr_id =? and course_id=?";
     String SQL_FIND_COURSE_BY_ID = "select c.*,uhc.usr_id,uhc.course_id,u.* from course c LEFT JOIN " +

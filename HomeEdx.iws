@@ -13,32 +13,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a2ccef0-02f4-4c0f-bb84-0c342fe63f21" name="Default" comment="Try 17 cabinet + checks done, filter in progress">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/Log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/META-INF/context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HomeEdx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/HomeEdx.iml" afterDir="false" />
+    <list default="true" id="9a2ccef0-02f4-4c0f-bb84-0c342fe63f21" name="Default" comment="Try 18 filter done, logging in progress">
       <change beforePath="$PROJECT_DIR$/HomeEdx.iws" beforeDir="false" afterPath="$PROJECT_DIR$/HomeEdx.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/ExceptionCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/controller/Command/LoginCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/JDBCCourseDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/JDBCCourseDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Log4j2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/Command.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/CommandUtility.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/ExceptionCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LogOutCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LoginCommand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Servlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/filters/AuthFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/filters/EncodingFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/listener/SessionListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/User$UserBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/model/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/conf/logging.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/conf/tomcat-users.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/conf/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/SQLConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/itstep/model/dao/impl/SQLConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LoginCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/itstep/controller/Command/LoginCommand.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,19 +114,6 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -248,7 +218,8 @@
       <workItem from="1603980115892" duration="30351000" />
       <workItem from="1604062424549" duration="7207000" />
       <workItem from="1604214948142" duration="9648000" />
-      <workItem from="1604251055807" duration="17909000" />
+      <workItem from="1604251055807" duration="18207000" />
+      <workItem from="1604319873891" duration="7839000" />
     </task>
     <task id="LOCAL-00001" summary="Try 1 start from CoffeeMachine">
       <created>1602951654571</created>
@@ -376,7 +347,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604265739390</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Try 18 filter done, logging in progress">
+      <created>1604270553438</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1604270553438</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,7 +394,8 @@
     <MESSAGE value="Try 16 course delete in progress" />
     <MESSAGE value="Try 16 course delete course done&#10;(todo - put on filter, set user check)" />
     <MESSAGE value="Try 17 cabinet + checks done, filter in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="Try 17 cabinet + checks done, filter in progress" />
+    <MESSAGE value="Try 18 filter done, logging in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="Try 18 filter done, logging in progress" />
   </component>
   <component name="WindowStateProjectService">
     <state x="163" y="0" key="#Project_Structure" timestamp="1603361149424">
@@ -439,51 +418,51 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="466" y="258" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1602951135100" />
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603986853772">
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604328165703">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1603986853772" />
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1604328165703" />
     <state x="488" y="148" key="FileChooserDialogImpl" timestamp="1604251131260">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="488" y="148" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1604251131260" />
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601657008039" />
-    <state width="1323" height="146" key="GridCell.Tab.0.bottom" timestamp="1604270228598">
+    <state width="1323" height="223" key="GridCell.Tab.0.bottom" timestamp="1604329515271">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604270228598" />
+    <state width="1323" height="223" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604329515271" />
     <state width="1493" height="212" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601657009563" />
-    <state width="1323" height="146" key="GridCell.Tab.0.center" timestamp="1604270228598">
+    <state width="1323" height="223" key="GridCell.Tab.0.center" timestamp="1604329515271">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1604270228598" />
+    <state width="1323" height="223" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1604329515271" />
     <state width="1493" height="212" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601657009563" />
-    <state width="1323" height="146" key="GridCell.Tab.0.left" timestamp="1604270228598">
+    <state width="1323" height="223" key="GridCell.Tab.0.left" timestamp="1604329515270">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1604270228598" />
+    <state width="1323" height="223" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1604329515270" />
     <state width="1493" height="212" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601657009562" />
-    <state width="1323" height="146" key="GridCell.Tab.0.right" timestamp="1604270228598">
+    <state width="1323" height="223" key="GridCell.Tab.0.right" timestamp="1604329515271">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1604270228598" />
+    <state width="1323" height="223" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1604329515271" />
     <state width="1493" height="212" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601657009563" />
-    <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1604266350805">
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1604329515272">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604266350805" />
-    <state width="1323" height="223" key="GridCell.Tab.1.center" timestamp="1604266350805">
+    <state width="1323" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604329515272" />
+    <state width="1323" height="223" key="GridCell.Tab.1.center" timestamp="1604329515271">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1604266350805" />
-    <state width="1323" height="223" key="GridCell.Tab.1.left" timestamp="1604266350804">
+    <state width="1323" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1604329515271" />
+    <state width="1323" height="223" key="GridCell.Tab.1.left" timestamp="1604329515271">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1604266350804" />
-    <state width="1323" height="223" key="GridCell.Tab.1.right" timestamp="1604266350805">
+    <state width="1323" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1604329515271" />
+    <state width="1323" height="223" key="GridCell.Tab.1.right" timestamp="1604329515271">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1604266350805" />
+    <state width="1323" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1604329515271" />
     <state width="1323" height="180" key="GridCell.Tab.2.bottom" timestamp="1603348438790">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -556,10 +535,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1603366644199" />
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1604265743743">
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1604270563894">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1604265743743" />
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1604270563894" />
     <state x="500" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603359028006">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -589,6 +568,8 @@
         <watch expression="session" />
         <watch expression="session" language="JAVA" />
         <watch expression="session" />
+        <watch expression="res" />
+        <watch expression="res" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

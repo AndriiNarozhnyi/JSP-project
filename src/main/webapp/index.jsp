@@ -25,17 +25,11 @@ String getFormattedDate(){
 </head>
     <body>
     <%@ include file="/templates/header1.jsp"%>
+    <div class="container">
         <h2>
-            Hello CoffeeMachine! <br/>
-            <i>Сегодня <%= getFormattedDate() %></i>
+           <span><fmt:message key="welcome" /></span>
+            <i><%= getFormattedDate() %></i>
         </h2>
-
-
-        <br/>
-        <a href="${pageContext.request.contextPath}/login.jsp">Please log in</a>
-              <br>
-        <a href="${pageContext.request.contextPath}/exception">Exception</a>
-              <br>
-
+    </div>
     </body>
 </html>

@@ -105,16 +105,42 @@ public class JDBCCourseDao implements CourseDao {
     @Override
     public CoursePage findByFilterDispatcher(Pageable pageable, Map<String, String> paramMap, String path, Long userId) {
         StringBuilder sb = new StringBuilder(SQL_COURSE_FILTER);
+        StringBuilder sb_st_in_progr = new StringBuilder(SQL_COURSE_FILTER_IP);
+
         String queryMade = "";
+        String queryMade1 = "";
+        String queryMadeStInProgress = "";
         switch (path){
             case "/teacher/cabinet":
-                queryMade = maKeQuery(sb, 300, "and c.usr_id="+userId + " ");
+                queryMade1 = maKeQuery(sb, 302, "and c.usr_id="+userId + " ");
+                queryMadeStInProgress = maKeQuery(sb_st_in_progr, 302, "and c.usr_id="+userId + " ");
                 break;
             case "/user/cabinet":
-                queryMade = maKeQuery(sb, 300, "and uhc.usr_id="+userId+" ");
+                queryMade1 = maKeQuery(sb, 302, "and uhc.usr_id="+userId+" ");
+                queryMadeStInProgress = maKeQuery(sb_st_in_progr, 302, "and uhc.usr_id="+userId+" ");
                 break;
             default:
-                queryMade = sb.toString();
+                queryMade1 = sb.toString();
+                queryMadeStInProgress = sb_st_in_progr.toString();
+                break;
+        }
+
+        switch (paramMap.get("fstatus")) {
+            case "Finished":
+                paramMap.put("fendDate", LocalDate.now().toString());
+                queryMade = queryMade1;
+                break;
+            case "Not Started":
+                paramMap.put("fstartDate", LocalDate.now().plusDays(1).toString());
+                queryMade = queryMade1;
+                break;
+            case "In Progress":
+                paramMap.put("fstartDate", LocalDate.now().toString());
+                paramMap.put("fendDate", LocalDate.now().toString());
+                queryMade = queryMadeStInProgress;
+                break;
+            default:
+                queryMade = queryMade1;
                 break;
         }
 
